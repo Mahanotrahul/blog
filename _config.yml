@@ -3,7 +3,7 @@
 title:               Rahul Mahanot's blog
 tagline:             'A Jekyll theme'
 description:         'I am Rahul Mahanot.'
-baseurl:             '/blog'
+baseurl:             ''
 paginate:            5
 permalink:           pretty
 
