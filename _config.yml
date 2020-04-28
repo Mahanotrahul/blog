@@ -1,0 +1,25 @@
+
+# Setup
+title:               Rahul Mahanot's blog
+tagline:             'A Jekyll theme'
+description:         'I am Rahul Mahanot.'
+baseurl:             '/blog'
+paginate:            5
+permalink:           pretty
+
+# About/contact
+author:
+  name:              Rahul Mahanot
+  url:               https://twitter.com/mdo
+  email:             thecodeboxed@gmail.com
+
+# Gems
+gems: [jekyll-paginate]
+paginate: 5
+paginate_path: "page:num"
+plugins:
+  - jekyll-paginate
+
+# Custom vars
+version:             1.1.0
+google_analytics_id: #UA-XXXX-Y
