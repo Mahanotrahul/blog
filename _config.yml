@@ -1,7 +1,7 @@
 
 # Setup
 title:               Rahul Mahanot's blog
-tagline:             'A Jekyll theme'
+tagline:             ''
 description:         'I am Rahul Mahanot.'
 baseurl:             '/blog'
 paginate:            5
