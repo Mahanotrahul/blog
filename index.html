@@ -1,37 +1,94 @@
 ---
 layout: default
-title: Home
+title: Blog
 ---
 
-<div class="posts">
-  {% for post in paginator.posts %}
-  <div class="post">
-    <h1 class="post-title">
-      <a href="{{ post.url | absolute_url }}">
-        {{ post.title }}
-      </a>
-    </h1>
+<!-- Resume section start -->
+<section class="resume-section spad pt-0" style="margin-top:-150px;">
+  <div class="hero-text">
 
-    <span class="post-date">{{ post.date | date_to_string }}</span>
 
-    {{ post.content }}
+    <p style="font-family: Cascadia Code, Source Sans Pro; text-align:justify">
+      <small>
+        <img src="public/Picture.png" alt=""  style="border-radius:50%; float:right; vertical-align: middle; object-fit: cover; margin: 0 0 1em 2em;">
+      Hello, I am Rahul Mahanot, a final year undergrad at Indian Institute of Technology Bhubaneswar.
+
+      I grew up chasing chickens in Guwahati city in India, aspiring to be a pilot looking at the aeroplanes flying over me.
+      I aspire to be a computer scientist, a writer, a politician, comic artist and many more. But I do think I'll end up pursuing PhD in one of the branches of CS.
+
+      I spend my free time reading, writing, programming and travelling around exploring the wild and unkown places.
+      <br><br>
+      I'm an Electonics and Communication undergraduate student, a young developer, data-science enthusiast,
+      chess player and a designer in love with photography and discovering new worlds and cultures.
+      <!-- My Developer story<br>
+      <small><small>App Developer and researcher of the house Linux, the first to be blamed, the Breaker of Loops, king of the commands and terminal, the Code Debugger, Protector of the Global Namespace and Logger of Bugs.</small></small><br> -->
+      <br><br>
+      I'm best reached by <a href="mailto:thecodeboxed@gmail.com">email</a>. I love meeting new people, and am always open to collaboration.
+      <br><br>
+      To know a little more about the human side of me <a href="/bio.html">go here</a>
+      </small>
+    </p>
+      <script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script>
+      <script type='text/javascript'>kofiwidget2.init('Buy me Coffee', '#e02424', 'R6R81NPB1');kofiwidget2.draw();</script>
+
+    <br><br><br><br>
+    <h3>Affiliations</h3>
+    <p style="font-family: Cascadia Code, Source Sans Pro; text-align:justify">
+      <small>
+        <br>
+        <a href="https://media.net"> Media.net - Directi </a>: I am placed at Media net as a Site Reliabiity Engineer (SRE) through campus placements. I will be joining the company this July.
+        <br><br>
+        <a href="https://vasitars.com/prajjawala"> Prajjawala</a> is a startup founded by my seniors and I have been working with Prajjawala as a senior researcher
+          for more than 3 years now. I developed application to handle server-client communication on LoRaWAN network module. I received the National Budding Innovator
+          award for the year 2019 by NRDC at Ahmedabad.
+          Currently working on designing the PCB for the electronics part. (<i style="color:rgb(153, 78, 12)">ongoing</i>)
+      </small>
+    </p>
+
+  <br><br><br><br>
+  <h3>What I'm working on</h3>
+  <p style="font-family: Cascadia Code, Source Sans Pro; text-align:justify">
+    <small>
+      <ol style="padding-left:20px; font-family: Cascadia Code, Source Sans Pro; text-align:justify">
+      <li style="font-family: Cascadia Code, Source Sans Pro; text-align:justify">⚡Completing my degree on time, duh! </li>
+      <li style="font-family: Cascadia Code, Source Sans Pro; text-align:justify">✍️I love writing. I plan to populate this site with more technical and non-technical writings. Check out the <a href="blog/">blog</a>. </li>
+      <li style="font-family: Cascadia Code, Source Sans Pro; text-align:justify">Most of my technical work is on <a href="https://github.com/Mahanotrahul">Github</a>. Some of my other projects are:</li>
+      <ul style="padding-left:10px;">
+        <li style="font-family: Cascadia Code, Source Sans Pro; text-align:justify"><a href="https://github.com/Mahanotrahul/mysocks">Mysocks</a>: A python package to chat and easily transfer files between
+          computers using socket programming (<i style="color:rgb(153, 78, 12)">ongoing</i>) </li>
+        <li style="font-family: Cascadia Code, Source Sans Pro; text-align:justify">Emotion recognition from speech signals: This is my Bachelor's thesis project. More details soon when I complete the thesis.</li>
+      </ul>
+    </ol>
+
+
+    </small>
+  </p>
+
   </div>
-  {% endfor %}
-</div>
+</section>
 
-<div class="pagination">
-  {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ paginator.next_page_path | absolute_url }}">Older</a>
-  {% else %}
-    <span class="pagination-item older">Older</span>
-  {% endif %}
-  {% if paginator.previous_page %}
-    {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="{{ '/' | absolute_url }}">Newer</a>
-    {% else %}
-      <a class="pagination-item newer" href="{{ paginator.previous_page_path | absolute_url }}">Newer</a>
-    {% endif %}
-  {% else %}
-    <span class="pagination-item newer">Newer</span>
-  {% endif %}
-</div>
+<section class="section-title">
+  <div class="icon-box-area spad">
+    <div class="icon-box">
+      <i class="flaticon-011-reading"></i>
+      <p>Reading</p>
+    </div>
+    <div class="icon-box">
+      <i class="flaticon-002-writing"></i>
+      <p>Writing</p>
+    </div>
+    <div class="icon-box">
+      <i class="flaticon-015-photo-camera"></i>
+      <p>Photography</p>
+    </div>
+    <div class="icon-box">
+      <i class="flaticon-013-chess-1"></i>
+      <p>Chess</p>
+    </div>
+
+  </div>
+  <!-- skill section end -->
+  <div class="social-links" style="margin-top:-10px">
+    <a href="https://github.com/Mahanotrahul" style="margin-right:0px"><i class="fa fa-github"></i></a>
+  </div>
+</section>

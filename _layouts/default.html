@@ -9,23 +9,43 @@
 
     <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
          content to avoid any CSS collisions with our real content. -->
-    <div class="wrap">
-      <div class="masthead">
-        <div class="container">
-          <h3 class="masthead-title">
-            <a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
-          </h3>
-        </div>
-      </div>
+         <div class="home-four-style">
 
-      <div class="container content">
-        {{ content }}
-      </div>
-    </div>
 
-    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+       		<div class="container-fluid">
+       			<div class="row">
+              <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
+       					<div class="main-right-area">
 
-    <script src='{{ site.baseurl }}/public/js/script.js'></script>
+                      {{ content }}
+                </div>
+
+                <br><br>
+
+
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+
     <script src="{{ site.baseurl }}/public/js/jquery-2.1.4.min.js"></script>
+  	<script src="{{ site.baseurl }}/public/js/bootstrap.min.js"></script>
+  	<script src="{{ site.baseurl }}/public/js/owl.carousel.min.js"></script>
+  	<script src="{{ site.baseurl }}/public/js/magnific-popup.min.js"></script>
+  	<script src="{{ site.baseurl }}/public/js/circle-progress.min.js"></script>
+  	<script src="{{ site.baseurl }}/public/js/main.js"></script>
+    <script src="{{ site.baseurl }}/public/js/dark-reader.js"></script>
+    <script>
+    DarkReader.setFetchMethod(window.fetch);
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+  });
+
+
+
+
+  </script>
   </body>
 </html>
