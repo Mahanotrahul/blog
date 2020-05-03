@@ -1,8 +1,8 @@
 
 # Setup
-title:               Rahul Mahanot's blog
+title:               Blog
 tagline:             ''
-description:         'I am Rahul Mahanot.'
+description:         'Rahul Mahanot'
 baseurl:             '/blog'
 paginate:            5
 permalink:           pretty
