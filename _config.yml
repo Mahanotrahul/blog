@@ -5,7 +5,7 @@ email:               thecodeboxed@gmail.com
 profile_img:         Picture.png
 tagline:             ''
 description:         'Rahul Mahanot'
-baseurl:             ''
+baseurl:             '/blog/'
 paginate:            5
 permalink:           pretty
 
