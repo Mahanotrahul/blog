@@ -1,9 +1,11 @@
 
 # Setup
-title:               Blog
+title:               Rahul Mahanot
+email:               thecodeboxed@gmail.com
+profile_img:         Picture.png
 tagline:             ''
 description:         'Rahul Mahanot'
-baseurl:             '/blog'
+baseurl:             ''
 paginate:            5
 permalink:           pretty
 
