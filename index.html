@@ -7,41 +7,17 @@ title: Blog
       <div class="topic-box">
         <h2>Latest</h2>
         <ul>
-
+          {% for post in site.posts %}
+          {% unless post.draft %}
+          {% capture currentdate %}{{post.date | date: "%Y"}}{% endcapture %}
             <li>
-              19 Apr 2020 -
-              <a href="/2020/04/19/pfab13-when-code-is-too-clever-to-be-clean/">
-                PFAB #13: When code is too clever to be clean
+              {{ post.date | date: "%B %-d, %Y" }}
+              <a href="{{ post.url }}">
+                {{ post.title }}
               </a>
             </li>
-
-            <li>
-              13 Apr 2020 -
-              <a href="/2020/04/13/hundreds-of-companies-assert-usage-rights-over-all-ideas/">
-                Hundreds of companies assert usage rights over all ideas sent through their services
-              </a>
-            </li>
-
-            <li>
-              06 Apr 2020 -
-              <a href="/2020/04/06/systems-design-for-advanced-beginners/">
-                Systems design for advanced beginners
-              </a>
-            </li>
-
-            <li>
-              18 Mar 2020 -
-              <a href="/2020/03/18/yourself-happier-iphone-worse/">
-                How to make yourself happier by making your iPhone worse
-              </a>
-            </li>
-
-            <li>
-              13 Mar 2020 -
-              <a href="/2020/03/13/smile-by-papa-gary-computer-remix/">
-                Smile by Papa (Gary Computer Remix)
-              </a>
-            </li>
+          {% endunless %}
+          {% endfor %}
 
         </ul>
 
