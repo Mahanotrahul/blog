@@ -462,6 +462,55 @@ blockquote {
 	margin-bottom: 0;
 }
 
+.post {
+  margin-bottom: 4em;
+}
+
+/* Blog post or page title */
+.page-title,
+.post-title,
+.post-title a {
+  color: #303030;
+}
+.page-title,
+.post-title {
+  margin-top: 0;
+}
+
+/* Meta data line below post title */
+.post-date {
+  display: block;
+  margin-top: -.5rem;
+  margin-bottom: 1rem;
+  color: #9a9a9a;
+}
+
+/* Related posts */
+.related {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-top: 1px solid #eee;
+}
+.related-posts {
+  padding-left: 0;
+  list-style: none;
+}
+.related-posts h3 {
+  margin-top: 0;
+}
+.related-posts li small {
+  font-size: 75%;
+  color: #999;
+}
+.related-posts li a:hover {
+  color: #268bd2;
+  text-decoration: none;
+}
+.related-posts li a:hover small {
+  color: inherit;
+}
+
+
 /*---------------------
 	Social section
 -----------------------*/
@@ -1240,6 +1289,10 @@ blockquote {
 	img {
 		max-width: 25%;
 	}
+	.post-container {
+		padding-left: 300px;
+		padding-right: 300px;
+	}
 }
 
 @media only screen and (max-width: 1600px) {
@@ -1248,6 +1301,10 @@ blockquote {
 	}
 	img {
 		max-width: 28%;
+	}
+	.post-container {
+		padding-left: 250px;
+		padding-right: 250px;
 	}
 }
 
@@ -1262,6 +1319,10 @@ blockquote {
 	}
 	img {
 		max-width: 32%;
+	}
+	.post-container {
+		padding-left: 200px;
+		padding-right: 200px;
 	}
 }
 
@@ -1295,6 +1356,10 @@ blockquote {
 	}
 	img {
 		max-width: 32%;
+	}
+	.post-container {
+		padding-left: 150px;
+		padding-right: 150px;
 	}
 
 }
@@ -1331,6 +1396,10 @@ blockquote {
 	}
 	img {
 		max-width: 35%;
+	}
+	.post-container {
+		padding-left: 150px;
+		padding-right: 150px;
 	}
 }
 
@@ -1389,6 +1458,10 @@ blockquote {
 	}
 	img {
 		max-width: 35%;
+	}
+	.post-container {
+		padding-left: 100px;
+		padding-right: 100px;
 	}
 }
 
@@ -1464,6 +1537,10 @@ blockquote {
 	img {
 		max-width: 38%;
 	}
+	.post-container {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
 }
 
 /* small Mobile :320px. */
@@ -1500,5 +1577,9 @@ blockquote {
 	}
 	img {
 		max-width: 38%;
+	}
+	.post-container {
+		padding-left: 0px;
+		padding-right: 00px;
 	}
 }

@@ -1,0 +1,879 @@
+
+<html>
+  <head>
+    <title>PFAB #14: Evil `eval` | Robert Heaton</title>
+    <meta name="google-site-verification" content="nEy67q46N_E4keArl5x0pv_hCQQ_jh0vUFe57wyR3Eg" />
+
+<meta property="og:image" content="https://robertheaton.com/images/pfab-cover.png"/>
+
+<meta name="twitter:image" content="https://robertheaton.com/images/pfab-cover.png" />
+<meta name="twitter:card" content="summary_large_image"></meta>
+
+
+
+<meta name="twitter:site" content="@RobJHeaton" />
+
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport' />
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+<meta property='og:site_name' content='Robert Heaton' />
+
+
+  <meta content='https://robertheaton.com/2020/05/03/pfab14-evil-eval/' property='og:url' />
+  <meta property="og:type" content='article'/>
+
+
+    <meta property="og:title" content='PFAB #14: Evil `eval` | Robert Heaton'/>
+
+    <meta name="twitter:title" content="PFAB #14: Evil `eval` | Robert Heaton" />
+
+
+
+
+
+    <meta property="og:description" content='This post is part of my “Programming Feedback for Advanced Beginners” series, which helps you make the leap from cobbling programs together to writing elegant, thoughtful code. Subscribe now to receive PFAB in your inbox, every fortnight, entirely free.'/>
+    <meta name="description" content='This post is part of my “Programming Feedback for Advanced Beginners” series, which helps you make the leap from cobbling programs together to writing elegant, thoughtful code. Subscribe now to receive PFAB in your inbox, every fortnight, entirely free.'/>
+
+    <meta name="twitter:description" content="This post is part of my “Programming Feedback for Advanced Beginners” series, which helps you make the leap from cobbling programs together to writing elegant, thoughtful code. Subscribe now to receive PFAB in your inbox, every fortnight, entirely free." />
+
+
+
+<link rel="shortcut icon" href="/images/fav.png"/>
+<style>
+@charset "UTF-8";
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-moz-keyframes fade-in {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-ms-keyframes fade-in {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-o-keyframes fade-in {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@keyframes fade-in {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+body {
+  background: #fff;
+  color: #000;
+  font-family: 'Open Sans', Georgia, helvetica, arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.55em;
+  padding: 0;
+  margin: 0; }
+
+[data-more] div.more-body {
+  display: none; }
+
+header {
+  *zoom: 1;
+  padding-bottom: 17px;
+  line-height: 1.3em;
+  background: #f0f1f2;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all, 0.3s;
+  -moz-transition: all, 0.3s;
+  -ms-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s; }
+  header:before, header:after {
+    content: " ";
+    display: table; }
+  header:after {
+    clear: both; }
+  header a {
+    -webkit-transition: all, 0.3s;
+    -moz-transition: all, 0.3s;
+    -ms-transition: all, 0.3s;
+    -o-transition: all, 0.3s;
+    transition: all, 0.3s; }
+  header h1 {
+    display: inline-block;
+    vertical-align: baseline;
+    zoom: 1;
+    *display: inline;
+    *vertical-align: auto;
+    font-size: 2.5em; }
+  header p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6em; }
+  header .rob {
+    position: absolute;
+    left: -104px;
+    top: 10px;
+    display: inline-block;
+    vertical-align: baseline;
+    zoom: 1;
+    *display: inline;
+    *vertical-align: auto;
+    overflow: hidden;
+    border-radius: 50px;
+    border: 4px solid rgba(0, 0, 0, 0.05);
+    -webkit-animation: fade-in 1.5s;
+    -moz-animation: fade-in 1.5s;
+    animation: fade-in 1.5s; }
+  header nav {
+    margin: 0; }
+  header nav ul {
+    list-style-type: none;
+    padding: 0; }
+  header nav ul li {
+    float: left; }
+  header nav ul li::after {
+    content: " /\00a0"; }
+
+footer {
+  padding: 0px;
+  background: #f0f1f2;
+  line-height: 2rem; }
+  footer h3 {
+    font-size: 14px; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal; }
+h1, h2, h3, h4, h5, h6 a {
+  text-decoration: none;
+  font-weight: normal; }
+
+.hr {
+  text-align: center;
+  margin: 20px auto 30px;
+  font-size: 6px;
+  color: #999;
+  letter-spacing: 20px; }
+  .hr:before {
+    content: "╲╲╲"; }
+
+a, .as-link {
+  color: #527d9a; }
+  a:hover, .as-link:hover {
+    color: #003355; }
+  a.big-button, .as-link.big-button {
+    display: block;
+    border-radius: 3px;
+    -webkit-transition: all, 0.2s;
+    -moz-transition: all, 0.2s;
+    -ms-transition: all, 0.2s;
+    -o-transition: all, 0.2s;
+    transition: all, 0.2s;
+    color: #fff;
+    font-size: 12px;
+    line-height: 2em;
+    padding: 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    border: 4px solid #8ab;
+    background: #6f8f9f; }
+    a.big-button:hover, .as-link.big-button:hover {
+      background: #608090; }
+    a.big-button:active, .as-link.big-button:active {
+      box-shadow: inset 0 1px 2px #406070; }
+    a.big-button.red, .as-link.big-button.red {
+      border: 4px solid #ddacac;
+      background: #bf6653; }
+      a.big-button.red:hover, .as-link.big-button.red:hover {
+        background: #bf4634; }
+      a.big-button.red:active, .as-link.big-button.red:active {
+        box-shadow: inset 0 1px 2px #602022; }
+
+.container, .stuff {
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+  padding: 15px;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.home .container {
+  padding-bottom: 0px;
+}
+
+@media (min-width: 960px) {
+  .container {
+    width: 80%; } }
+.pull-right {
+  float: right; }
+
+.pull-left {
+  float: left; }
+
+.colour-1 {
+  color: #c94; }
+
+.colour-2 {
+  color: #925; }
+
+.colour-3 {
+  color: #484; }
+
+hr {
+  border: 0;
+  border-bottom: 1px dotted #CCC;
+  margin: 25px 0; }
+
+ul.posts {
+  padding: 0;
+  max-width: 800px;
+  margin: 0 auto 17px; }
+  ul.posts li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 15px; }
+  ul.posts li a {
+    display: block;
+    font-size: 18px; }
+    ul.posts li a, ul.posts li a * {
+      -webkit-transition: all, 0.3s;
+      -moz-transition: all, 0.3s;
+      -ms-transition: all, 0.3s;
+      -o-transition: all, 0.3s;
+      transition: all, 0.3s; }
+    ul.posts li a small {
+      font-size: 12px; }
+    ul.posts li a small.hide {
+      opacity: 0; }
+    ul.posts li a:hover small.hide {
+      opacity: 0.6; }
+
+.site section.blogpost {
+  margin-top: 25px;
+  max-width: 800px; }
+
+.site section.blogpost, .site section > p {
+  line-height: 1.8em; }
+  .site section.blogpost blockquote, .site section > p blockquote {
+    border-left: 3px solid #f6f8f9;
+    padding: 0 0 0 15px;
+    margin: 20px 0 20px -18px;
+    font-style: italic;
+    color: #777879;
+    -webkit-transition: all, 0.3s;
+    -moz-transition: all, 0.3s;
+    -ms-transition: all, 0.3s;
+    -o-transition: all, 0.3s;
+    transition: all, 0.3s; }
+    .site section.blogpost blockquote:hover, .site section > p blockquote:hover {
+      color: #030507;
+      border-left-color: #e4e6e9; }
+  .site section.blogpost li .CodeMirror, .site section > p li .CodeMirror {
+    margin: 10px 0; }
+  .site section.blogpost li p, .site section > p li p {
+    margin-bottom: 5px; }
+  .site section.blogpost img, .site section > p img {
+    max-width: 100%; }
+    .site section.blogpost img.half, .site section > p img.half {
+      width: 50%; }
+
+@media (max-width: 580px) {
+  section.blogpost img.half {
+    width: 100%; } }
+.muted {
+  color: #777; }
+
+.sec-head {
+  display: none;
+  background: #494949;
+  color: #fff;
+  display: block;
+  border-radius: 40px;
+  width: 60px;
+  height: 60px;
+  line-height: 58px;
+  margin: 10px auto;
+  text-align: center;
+  font-size: 80%;
+  text-shadow: -1px -1px 0px #000; }
+
+section.info {
+  width: 49%;
+  display: inline-block;
+  vertical-align: baseline;
+  zoom: 1;
+  *display: inline;
+  *vertical-align: auto;
+  vertical-align: top; }
+  section.info a {
+    line-height: 2.4em; }
+  section.info:not(:last-of-type) {
+    margin-right: 1%; }
+  section.info small {
+    color: #999; }
+  section.info .item * {
+    padding-bottom: 2px;
+    border-bottom: 1px dotted #ccc; }
+
+@media (max-width: 800px) {
+  section.info {
+    width: 100%; }
+    section.info:not(:last-of-type) {
+      border-bottom: 1px dotted #ccc;
+      margin-bottom: 20px;
+      padding-bottom: 35px; } }
+.subject {
+  font-size: 18px;
+  line-height: 1.3em;
+  margin: 0; }
+
+.section-title {
+  font-size: 16px;
+  color: #676566; }
+
+section.navigation {
+  *zoom: 1;
+  position: relative;
+  margin: 0 0 15px; }
+  section.navigation:before, section.navigation:after {
+    content: " ";
+    display: table; }
+  section.navigation:after {
+    clear: both; }
+  section.navigation a {
+    width: 50%; }
+    section.navigation a span {
+      opacity: 0.8;
+      padding: 0 5px;
+      -webkit-transition: all, 0.3s;
+      -moz-transition: all, 0.3s;
+      -ms-transition: all, 0.3s;
+      -o-transition: all, 0.3s;
+      transition: all, 0.3s; }
+    section.navigation a:hover span {
+      opacity: 1; }
+
+section.share-links {
+  text-align: center;
+  border-top: 1px dotted #ddd;
+  padding: 20px 0 0px;
+  margin: 20px 0; }
+  section.share-links .button {
+    display: inline-block;
+    vertical-align: baseline;
+    zoom: 1;
+    *display: inline;
+    *vertical-align: auto;
+    vertical-align: top;
+    height: 20px; }
+    section.share-links .button.spaced {
+      margin-right: 30px; }
+
+figure.highlight {
+  margin: 0; }
+
+pre {
+  background: black;
+  color: white;
+  overflow-x: scroll;
+  padding: 15px; }
+
+.indenter p {
+  text-indent: 30px;
+  text-align: justify;
+  margin: 0; }
+
+<!-- /*# sourceMappingURL=style.css.map */ -->
+</style>
+<style>
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFWJ0bf8pkAp6a.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFUZ0bf8pkAp6a.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFWZ0bf8pkAp6a.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFVp0bf8pkAp6a.woff2) format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFWp0bf8pkAp6a.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFW50bf8pkAp6a.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFVZ0bf8pkAg.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.highlight pre { background-color: #272822; }
+.highlight .hll { background-color: #272822; }
+.highlight .c { color: #75715e } /* Comment */
+.highlight .err { color: #960050; background-color: #1e0010 } /* Error */
+.highlight .k { color: #66d9ef } /* Keyword */
+.highlight .l { color: #ae81ff } /* Literal */
+.highlight .n { color: #f8f8f2 } /* Name */
+.highlight .o { color: #f92672 } /* Operator */
+.highlight .p { color: #f8f8f2 } /* Punctuation */
+.highlight .cm { color: #75715e } /* Comment.Multiline */
+.highlight .cp { color: #75715e } /* Comment.Preproc */
+.highlight .c1 { color: #75715e } /* Comment.Single */
+.highlight .cs { color: #75715e } /* Comment.Special */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .kc { color: #66d9ef } /* Keyword.Constant */
+.highlight .kd { color: #66d9ef } /* Keyword.Declaration */
+.highlight .kn { color: #f92672 } /* Keyword.Namespace */
+.highlight .kp { color: #66d9ef } /* Keyword.Pseudo */
+.highlight .kr { color: #66d9ef } /* Keyword.Reserved */
+.highlight .kt { color: #66d9ef } /* Keyword.Type */
+.highlight .ld { color: #e6db74 } /* Literal.Date */
+.highlight .m { color: #ae81ff } /* Literal.Number */
+.highlight .s { color: #e6db74 } /* Literal.String */
+.highlight .na { color: #a6e22e } /* Name.Attribute */
+.highlight .nb { color: #f8f8f2 } /* Name.Builtin */
+.highlight .nc { color: #a6e22e } /* Name.Class */
+.highlight .no { color: #66d9ef } /* Name.Constant */
+.highlight .nd { color: #a6e22e } /* Name.Decorator */
+.highlight .ni { color: #f8f8f2 } /* Name.Entity */
+.highlight .ne { color: #a6e22e } /* Name.Exception */
+.highlight .nf { color: #a6e22e } /* Name.Function */
+.highlight .nl { color: #f8f8f2 } /* Name.Label */
+.highlight .nn { color: #f8f8f2 } /* Name.Namespace */
+.highlight .nx { color: #a6e22e } /* Name.Other */
+.highlight .py { color: #f8f8f2 } /* Name.Property */
+.highlight .nt { color: #f92672 } /* Name.Tag */
+.highlight .nv { color: #f8f8f2 } /* Name.Variable */
+.highlight .ow { color: #f92672 } /* Operator.Word */
+.highlight .w { color: #f8f8f2 } /* Text.Whitespace */
+.highlight .mf { color: #ae81ff } /* Literal.Number.Float */
+.highlight .mh { color: #ae81ff } /* Literal.Number.Hex */
+.highlight .mi { color: #ae81ff } /* Literal.Number.Integer */
+.highlight .mo { color: #ae81ff } /* Literal.Number.Oct */
+.highlight .sb { color: #e6db74 } /* Literal.String.Backtick */
+.highlight .sc { color: #e6db74 } /* Literal.String.Char */
+.highlight .sd { color: #e6db74 } /* Literal.String.Doc */
+.highlight .s2 { color: #e6db74 } /* Literal.String.Double */
+.highlight .se { color: #ae81ff } /* Literal.String.Escape */
+.highlight .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.highlight .si { color: #e6db74 } /* Literal.String.Interpol */
+.highlight .sx { color: #e6db74 } /* Literal.String.Other */
+.highlight .sr { color: #e6db74 } /* Literal.String.Regex */
+.highlight .s1 { color: #e6db74 } /* Literal.String.Single */
+.highlight .ss { color: #e6db74 } /* Literal.String.Symbol */
+.highlight .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.highlight .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.highlight .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.highlight .il { color: #ae81ff } /* Literal.Number.Integer.Long */
+
+.highlight .gh { } /* Generic Heading & Diff Header */
+.highlight .gu { color: #75715e; } /* Generic.Subheading & Diff Unified/Comment? */
+.highlight .gd { color: #f92672; } /* Generic.Deleted & Diff Deleted */
+.highlight .gi { color: #a6e22e; } /* Generic.Inserted & Diff Inserted */
+
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26941226-1']);
+  _gaq.push(['_trackPageview']);
+  _gaq.push (['_gat._anonymizeIp']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = 'https://robertheaton.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+  </head>
+  <body>
+    <header>
+  <div class="container" style="margin-top: -25px">
+    <h1 style="position: relative; top: 10px;">
+      <a href="/">Robert Heaton</a>
+    </h1>
+    <br />
+
+    <p class="tagline" aria-hidden="true">
+      Software Engineer / One-track lover / Down a two-way lane
+    </p>
+
+    <nav role="navigation" style="margin-top: -5px">
+      <ul>
+        <li><a href="/about">About</a></li>
+        <li><a href="/archive">Archive</a></li>
+        <li><a href="https://twitter.com/RobJHeaton">Twitter</a></li>
+        <li><a style="color: #f92672;" href="https://advancedbeginners.substack.com">NEW: Programming Feedback for Advanced Beginners</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+    <div class='container site'>
+      <section class='post blogpost'>
+        <h1 class='subject'><a href="/2020/05/03/pfab14-evil-eval/">PFAB #14: Evil `eval`</a></h1>
+        <div class='date muted'>03 May 2020</div>
+        <blockquote>
+  <p>This post is part of my “Programming Feedback for Advanced Beginners” series, which helps you make the leap from cobbling programs together to writing elegant, thoughtful code. <a href="https://advancedbeginners.substack.com">Subscribe now</a> to receive PFAB in your inbox, every fortnight, entirely free.</p>
+</blockquote>
+
+<p><em>Programming Feedback for Advanced Beginners</em> reader Frankie Frankleberry writes:</p>
+
+<blockquote>
+  <p>Here’s a program I wrote recently. It works, but I’m really not sure if my code is “proper”. I use Python’s <code class="language-plaintext highlighter-rouge">eval</code> function, which never feels like a good idea. There might be a nicer way to do it…?</p>
+</blockquote>
+
+<p>Frankie is absolutely correct; using the <code class="language-plaintext highlighter-rouge">eval</code> function is never a good idea. Fortunately, he’s also correct that you almost never have to use it, and there are almost always better options available. In this post we’ll learn what the <code class="language-plaintext highlighter-rouge">eval</code> function does, why it’s wonderful and amazing, and why you should never, <em>ever</em> use it. We’ll also see how we can rewrite Frankie’s code using first-class functions to expunge the evil <code class="language-plaintext highlighter-rouge">eval</code> altogether. Frankie’s code is written in Python, but the lessons are applicable to code written in many other languages.</p>
+
+<h2 id="what-does-frankies-program-do">What does Frankie’s program do?</h2>
+
+<p>Frankie’s program is a data processing script that helps his business analyze its product ranges to see if any of them are mispriced. The program loads a big CSV of product data and flags any products meeting certain criteria, such as those with particularly low sales prices or profit margins. The company presumably uses the program’s output to try to charge more money for the same stuff.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                     +---------------------+
++------------+   &gt;--&gt;+low_profit_products  +---&gt;   +------------+
+|            |   |   +---------------------+   |   |            |
+|Product Data+---+--&gt;+high_price_products  +---+--&gt;+   Output   |
+|            |   |   +---------------------+   |   |            |
++------------+   &gt;--&gt;+low_selling_products +---&gt;   +------------+
+                     +---------------------+
+</code></pre></div></div>
+
+<p>You can read Frankie’s code on GitHub, as well as my refactored version (here’s <a href="https://github.com/robert/programming-feedback-for-advanced-beginners/blob/master/editions/14-evil-eval/original/main.py">his original code</a>, here’s <a href="https://github.com/robert/programming-feedback-for-advanced-beginners/blob/b059b83fd74c0b1b911dd5ed9a84d6ae0659c3af/editions/14-evil-eval/updated/main.py">the updated version</a>, and here’s <a href="https://github.com/robert/programming-feedback-for-advanced-beginners/commit/43c4a223a0b36c05cbc7a49dc404712b01c8e8f1">a commit showing just the changes</a>). In order to understand the changes that I made, we need to first understand Python’s <code class="language-plaintext highlighter-rouge">eval</code> function.</p>
+
+<h2 id="what-does-the-eval-function-do">What does the <code class="language-plaintext highlighter-rouge">eval</code> function do?</h2>
+
+<p>Python’s <code class="language-plaintext highlighter-rouge">eval</code> function takes a string and evaluates it as a Python expression. For example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ==== EXAMPLE 1 ====
+</span><span class="n">inp1</span> <span class="o">=</span> <span class="s">"5"</span>
+<span class="n">inp2</span> <span class="o">=</span> <span class="s">"8"</span>
+<span class="n">operator</span> <span class="o">=</span> <span class="s">"+"</span>
+
+<span class="c1"># `eval` evaluates the string "5+8"
+# and returns the result.
+</span><span class="n">x</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">inp1</span> <span class="o">+</span> <span class="n">operator</span> <span class="o">+</span> <span class="n">inp2</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"x is: "</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span>
+<span class="c1"># =&gt; x is: 13
+</span>
+<span class="c1"># ==== EXAMPLE 2 ====
+</span><span class="n">function_name</span> <span class="o">=</span> <span class="s">"reverse"</span>
+<span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+
+<span class="c1"># `eval` evaluates the string "reverse([1,2,3,4])"
+# and returns the result.
+</span><span class="n">y</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">function_name</span> <span class="o">+</span> <span class="s">"("</span> <span class="o">+</span> <span class="n">l</span> <span class="o">+</span> <span class="s">")"</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"y is: "</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+<span class="c1"># =&gt; y is: [4,3,2,1]
+</span></code></pre></div></div>
+
+<p>Here’s a rough outline of Frankie’s code. It uses <code class="language-plaintext highlighter-rouge">eval</code> to loop through a list of filter functions:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">low_profit_margin_products</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+  <span class="c1"># ...do some stuff and return a subset of data...
+</span>
+<span class="k">def</span> <span class="nf">low_sales_price_products</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+  <span class="c1"># ...do some other stuff and return another subset of data...
+</span>
+<span class="n">function_names</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s">"low_profit_margin_products"</span><span class="p">,</span>
+  <span class="s">"low_sales_price_products"</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
+
+<span class="c1"># This calls each function in function_names
+# on our dataset.
+</span><span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">function_names</span><span class="p">:</span>
+  <span class="c1"># Evaluates strings like "low_profit_margin_products(dataset)"
+</span>  <span class="c1"># and adds the result to `output`.
+</span>  <span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">fn</span> <span class="o">+</span> <span class="s">"(dataset)"</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">eval</code>-like methods exist in most other <em>interpreted languages</em> too, like Ruby and JavaScript. They allow you to dynamically construct the code of your program. They are flexible, powerful, and fun to work with, and you should never ever use them.</p>
+
+<h2 id="why-is-eval-dangerous">Why is <code class="language-plaintext highlighter-rouge">eval</code> dangerous?</h2>
+
+<p><code class="language-plaintext highlighter-rouge">eval</code> is dangerous because it can make your code insecure. The above <code class="language-plaintext highlighter-rouge">eval</code> example snippet is, in the exact form that it is currently written, technically fine. If you used it as part of a real website or other system, it would not introduce any immediate vulnerabilities. But the <code class="language-plaintext highlighter-rouge">eval</code> would still be lurking there, waiting for an innocuous-seeming change to turn it into a gaping flaw.</p>
+
+<p>Here’s a plausible story about the future. Suppose that Frankie’s system keeps growing and adding new features. It becomes so useful that his company releases it as a standalone product that other organizations can use to analyze their own data. Frankie adds a UI in which users can select the filters that they want to run on their data. He asks users for the list of <code class="language-plaintext highlighter-rouge">function_names</code> that they want to run, and swaps that list in for the current, hard-coded <code class="language-plaintext highlighter-rouge">function_names</code> variable. His new code looks something like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">function_names</span> <span class="o">=</span> <span class="n">get_function_names_from_user_input</span><span class="p">()</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
+
+<span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">function_names</span><span class="p">:</span>
+  <span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">fn</span> <span class="o">+</span> <span class="s">"(dataset)"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Very elegant, but very, very insecure. To see why, think about what would happen if a user passed in a function name of:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>print('hello world') and low_profit_margin_products
+</code></pre></div></div>
+
+<p>The code would assemble and then run the following string as code:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'hello world'</span><span class="p">)</span> <span class="ow">and</span> <span class="n">low_profit_margin_products</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This line would return the low profit margin products, as per usual, but before it did so it would execute <code class="language-plaintext highlighter-rouge">print('hello world')</code>. Printing <code class="language-plaintext highlighter-rouge">hello world</code> isn’t going to bring down Frankie’s company, but an attacker could use the same technique with a function name of:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>exec('import os; os.rmdir("/")') and low_profit_margin_product
+</code></pre></div></div>
+
+<p>to erase Frankie’s server’s hard drive. That would ruin quite a few people’s days.</p>
+
+<p>The problem with <code class="language-plaintext highlighter-rouge">eval</code> is that it risks allowing attackers to craft malicious input (such as the above) that tricks your program into executing harmful code. This is not a theoretical threat; an attacker trying to exploit your system will often try feeding it a long list of sneaky inputs, designed to take advantage of insecure usages of tools like <code class="language-plaintext highlighter-rouge">eval</code>. Even if a program uses <code class="language-plaintext highlighter-rouge">eval</code> in a way that is technically safe today, it adds a subtle booby trap that future programmers might unwittingly stumble into when they update the code. You want your code to be secure, robust, and difficult to accidentally break.</p>
+
+<p>As well as being a security risk, <code class="language-plaintext highlighter-rouge">eval</code> makes your code difficult to understand and work with. For example, suppose that you write several methods to work with “reports” called <code class="language-plaintext highlighter-rouge">create_report</code>, <code class="language-plaintext highlighter-rouge">delete_report</code>, and <code class="language-plaintext highlighter-rouge">update_report</code>. To reduce duplication in your code, you decide to use <code class="language-plaintext highlighter-rouge">eval</code> to wrap the functions up inside a single <code class="language-plaintext highlighter-rouge">perform_report_action</code> method, like so:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">perform_report_action</span><span class="p">(</span><span class="n">action_type</span><span class="p">):</span>
+  <span class="s">"""
+  action_type is either "create", "delete" or "update".
+  """</span>
+  <span class="c1"># Debug statement
+</span>  <span class="k">print</span><span class="p">(</span><span class="s">"Performing report action: "</span> <span class="o">+</span> <span class="n">action_type</span><span class="p">)</span>
+
+  <span class="c1"># Check that the current user is allowed to perform this action
+</span>  <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user_has_permission_for_action_type</span><span class="p">(</span><span class="n">action_type</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="nb">Exception</span><span class="p">(</span><span class="s">"You are not authorized to perform this action!"</span><span class="p">)</span>
+
+  <span class="c1"># Save a database record saying that the action was performed
+</span>  <span class="c1"># for auditing purposes.
+</span>  <span class="n">record_action_audit_log_in_database</span><span class="p">(</span><span class="n">action_type</span><span class="p">)</span>
+
+  <span class="c1"># Use `eval` to actually execute the appropriate
+</span>  <span class="c1"># action method
+</span>  <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="n">action</span> <span class="o">+</span> <span class="s">"_report()"</span><span class="p">)</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">perform_report_action</span><span class="p">(</span><span class="s">"create"</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">perform_report_action</span><span class="p">(</span><span class="s">"delete"</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">perform_report_action</span><span class="p">(</span><span class="s">"update"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This fancy code works and saves you from repeating the code that performs the permission check and audit log for each report action. However, a few months later you decide to add some extra arguments to the <code class="language-plaintext highlighter-rouge">create_report</code> method. In order to make this change you’ll need to update every existing usage of <code class="language-plaintext highlighter-rouge">create_report()</code>. You search through your project for the string “<code class="language-plaintext highlighter-rouge">create_report</code>”. However, because of your previous cleverness, this string doesn’t actually appear anywhere and so your search finds nothing. This makes it difficult for you to figure out where <code class="language-plaintext highlighter-rouge">create_report</code> is used, or even whether it is still used at all. You either give up and move onto something else, or make your change and accidentally break your system.</p>
+
+<p>In summary, never use <code class="language-plaintext highlighter-rouge">eval</code> or any method like it.</p>
+
+<h2 id="why-did-frankie-use-eval">Why did Frankie use <code class="language-plaintext highlighter-rouge">eval</code>?</h2>
+
+<p>Frankie is a smart guy. In his email to me he even noted that he didn’t like the <code class="language-plaintext highlighter-rouge">eval</code> function. So why did he use it?</p>
+
+<p>Frankie had good intentions. He wanted to avoid writing repetitive code like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fn</span> <span class="o">=</span> <span class="s">'example-data.csv'</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+
+<span class="n">results1</span> <span class="o">=</span> <span class="n">low_profit_products</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">analysis1</span> <span class="o">=</span> <span class="n">do_analysis</span><span class="p">(</span><span class="n">results1</span><span class="p">)</span>
+
+<span class="n">results2</span> <span class="o">=</span> <span class="n">high_price_products</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">analysis2</span> <span class="o">=</span> <span class="n">do_analysis</span><span class="p">(</span><span class="n">results2</span><span class="p">)</span>
+
+<span class="n">results3</span> <span class="o">=</span> <span class="n">low_selling_products</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">analysis3</span> <span class="o">=</span> <span class="n">do_analysis</span><span class="p">(</span><span class="n">results3</span><span class="p">)</span>
+
+<span class="c1"># ...and so on...
+</span></code></pre></div></div>
+
+<p>He didn’t like the way that this approach would require him to copy and paste several lines every time he wanted to add a new filter function to his program. Think about a similar situation - it’s easy to pass multiple inputs through one function using a for-loop:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Multiple inputs
+</span><span class="n">animals</span> <span class="o">=</span> <span class="p">[</span><span class="s">"cat"</span><span class="p">,</span> <span class="s">"dog"</span><span class="p">,</span> <span class="s">"horse"</span><span class="p">,</span> <span class="s">"monkey"</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">animals</span><span class="p">:</span>
+  <span class="c1"># One function
+</span>  <span class="n">process_animal</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Shouldn’t it be just as easy to pass one input through multiple functions?</p>
+
+<p>It is, but it doesn’t require the use of <code class="language-plaintext highlighter-rouge">eval</code> or anything like it. Instead, we can use <em>first-class functions</em>. We’ve talked about first-class functions in <a href="https://robertheaton.com/2020/02/23/pfab10-first-class-functions-dependency-injection/">a previous PFAB</a>, but here’s a brief refresher.</p>
+
+<h3 id="first-class-functions">First-class functions</h3>
+
+<p>You learn very early on in your programming career that you can use a variable to store the output of a function:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">reversed_list</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">reversed_list</span><span class="p">)</span>
+<span class="c1"># =&gt; [9,7,5,3,1]
+</span></code></pre></div></div>
+
+<p>However, in Python you can also use a variable to store a function itself:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f</span> <span class="o">=</span> <span class="n">reverse</span>
+<span class="n">reversed_list</span> <span class="o">=</span> <span class="n">f</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">reversed_list</span><span class="p">)</span>
+<span class="c1"># =&gt; [9,7,5,3,1]
+</span></code></pre></div></div>
+
+<p>Frankie’s code contains a list of function name strings. He uses these names to call the corresponding functions using <code class="language-plaintext highlighter-rouge">eval</code>. Here’s the relevant lines again:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">function_names</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s">"low_profit_products"</span><span class="p">,</span>
+  <span class="s">"high_price_products"</span><span class="p">,</span>
+  <span class="s">"low_selling_products"</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">function_names</span><span class="p">:</span>
+  <span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">fn</span> <span class="o">+</span> <span class="s">"(dataset)"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>We can remove the need for <code class="language-plaintext highlighter-rouge">eval</code> by storing a list, not of function names, but of references to the functions themselves. We can iterate through this list using a for-loop, exactly as above, passing our dataset into each function in turn. This might look something like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">functions</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">low_profit_products</span><span class="p">,</span>
+  <span class="n">high_price_products</span><span class="p">,</span>
+  <span class="n">low_selling_products</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">functions</span><span class="p">:</span>
+  <span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">dataset</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>This version is much safer, and is even easier to read too. If we want to add a new filter function that performs a new analysis, all we have to do is add it to our list of functions. The for-loop takes care of the rest, no <code class="language-plaintext highlighter-rouge">eval</code>-ing or copy-pasting required.</p>
+
+<hr />
+
+<p>Any time you think you need to use <code class="language-plaintext highlighter-rouge">eval</code> or any other method that evaluates a string as code, stop and think. There will almost certainly be another way to do what you want that is safer and clearer. You could go through an entire 40 year career as a programmer without using any methods like this in production code and you’d almost certainly have been doing it right.</p>
+
+<p>First-class functions are wonderful. Passing around logic in the same way as any other value opens up a whole new world of elegant code. If you read my <a href="https://github.com/robert/programming-feedback-for-advanced-beginners/blob/b059b83fd74c0b1b911dd5ed9a84d6ae0659c3af/editions/14-evil-eval/updated/main.py">full refactored version of Frankie’s program</a>, you’ll see that I took this concept even further and wrapped up each filter function inside a <code class="language-plaintext highlighter-rouge">Filter</code> object. Next time on PFAB we’ll talk about why.</p>
+
+<hr />
+
+<p><em><a href="https://advancedbeginners.substack.com">Subscribe to Programming Feedback for Advanced Beginners</a> now</em>.</p>
+
+
+
+        <hr/>
+        <div style="">
+          <a href="https://twitter.com/robjheaton">
+            Follow me on Twitter
+          </a>
+          or
+          <a href="https://robertheaton.com/feed.xml">
+            RSS
+          </a>
+        </div>
+
+        <section style=" padding-top: 60px;">
+  <form action="https://ifoundthishelped.us4.list-manage.com/subscribe/post?u=84f18d8141e4ba155f81fb4eb&amp;id=264b2ba598" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <label for="mce-EMAIL">
+      <h3 style="font-size: 1.5em; margin-top:-10px; margin-bottom:-6px;">Get new essays sent to you</h3>
+    </label>
+    <p id="mce-email-describe">
+      Subscribe to my new work on programming, security, and a few other
+      topics. Published a few times a month.
+    </p>
+
+    <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Your email address" style="width:200px;font-size: 1.1em; padding-left:4px; line-height:1.7em">
+    <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button as-link green" style="position:relative; top: -1px; border-radius: 3px;
+    border: 1px solid #97d69c;
+    cursor: pointer;
+    height: 37px;background-color: #3eb542;
+    color: white;
+    font-size:1.1em">
+
+    <div id="mce-responses" class="clear" style="margin-top:15px">
+      <div class="response" id="mce-error-response" style="display:none"></div>
+      <div class="response" id="mce-success-response" style="display:none"></div>
+    </div>
+    <p><span style="color: #f92672;">NEW:</span> Also subscribe to my new series, <a href="https://advancedbeginners.substack.com">Programming Feedback for Advanced Beginners</a></p>
+
+  </form>
+  <div style="clear:both"></div>
+</section>
+
+
+  <h3 style="font-size: 1.5em;padding-top:30px;">More on Programming Projects for Advanced Beginners</h3>
+
+
+        <section class="navigation" style="padding-top:13; margin:0">
+
+    <div class="pull-left">
+      <a href="/2020/04/27/how-does-a-tcp-reset-attack-work/" id="next">
+        <span>&#9664; How does a TCP Reset Attack work?</span>
+      </a>
+    </div>
+
+
+</section>
+
+        <br/>
+      </section>
+    </div>
+    <footer>
+  <div class='stuff' style='text-align: center; padding:5px;'>
+    <a href="/">Home</a> /
+    <a href="/archive">Archive</a> /
+    <a href="/feed.xml">RSS</a> /
+    <a href="https://twitter.com/robjheaton">Twitter</a> /
+    <a href="/office-hours">Office hours</a> /
+    <a href="/tipoffs">Tipoffs</a> /
+    <a href="https://soundcloud.com/rob24242/">SoundCloud</a> /
+  </div>
+</footer>
+
+  </body>
+</html>
