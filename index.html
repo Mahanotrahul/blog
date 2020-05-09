@@ -15,6 +15,9 @@ title: Blog
               <a href="{{ post.url | absolute_url }}">
                 {{ post.title }}
               </a>
+              <p>
+                {{ post.description }}
+              </p>
             </li>
           {% endunless %}
           {% endfor %}
