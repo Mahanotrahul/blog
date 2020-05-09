@@ -1,7 +1,7 @@
 ---
 layout: post
 title: My Interview Experience
-description: My interview experience at on campus placements for Directi
+description: My interview experience during on campus placements for Directi
 ---
 
 
