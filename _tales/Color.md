@@ -6,7 +6,6 @@ description: I once lived a happy life...
 
 
 <br><br>
-### COLOR
 
 <br>
 I once lived a happy life\\
