@@ -30,3 +30,31 @@ title: Blog
       </div>
     </div>
 </div>
+
+<br><br>
+
+<div class='container' style="margin-top: -50px;">
+    <div id="home">
+      <div class="topic-box">
+        <h2>Stories</h2>
+        <ul>
+          {% for post in site.tales %}
+            <li>
+              {{ post.date | date: "%B %-d, %Y" }}
+              <a href="{{ post.url | absolute_url }}">
+                {{ post.title }}
+              </a>
+              <p>
+                {{ post.description }}
+              </p>
+            </li>
+          {% endfor %}
+
+        </ul>
+
+        <p>
+        <a href="/archive">(view all)</a>
+        </p>
+      </div>
+    </div>
+</div>

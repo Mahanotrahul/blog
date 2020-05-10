@@ -15,6 +15,11 @@ author:
   url:               https://twitter.com/RahulMahanot
   email:             thecodeboxed@gmail.com
 
+# collections
+collections:
+  tales:
+    output: true
+    
 # Gems
 gems: [jekyll-paginate]
 paginate: 5
