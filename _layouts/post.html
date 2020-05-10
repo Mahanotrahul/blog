@@ -1,9 +1,18 @@
 ---
 layout: default
 ---
+<style>
+    body {
+      text-align: justify;
+    }
+    ul, ol, li {
+      margin-left:20px;
+    }
+</style>
+
 <div class="post-container">
   <div class="post" style="margin-top: -150px;">
-    <h1 class="post-title">{{ page.title }}</h1>
+    <h1 class="post-title" style="text-align:left">{{ page.title }}</h1>
     <span class="post-date">{{ page.date | date_to_string }}</span>
     {{ content }}
   </div>

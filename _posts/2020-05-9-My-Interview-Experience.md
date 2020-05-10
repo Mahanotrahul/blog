@@ -8,10 +8,11 @@ description: My interview experience during on campus placements for Directi
 <br><br>
 ### Media.net (Directi) Interview Experience for SRE Role | (On Campus)
 
-Media.net came to our campus for Site Reliability Engineer role. The selection process had MCQ round followed by socket programming round, and technical interview round
+Media.net came to our campus for Site Reliability Engineering role. The selection process had MCQ round followed by socket programming round and technical interview round
+
 
 <br><br>
-#### Key to succeed:
+### Key to succeed:
 In-Depth knowledge of Computer Networks and Operating System is required. Also, socket programming is must while knowledge of basic Linux commands is a plus.
 
 There were two rounds before the Face to Face Technical Interview. First one was an online 45 minutes MCQ test consisting of 40 questions.
@@ -53,7 +54,7 @@ Always store messages for not greater than 15 minutes. New client should receive
 
 We were being evaluated by the Directi people during the test based on our approach and implementation. They also asked questions on how to scale this chat box to take it to production level such as database usage, persistent storage use for backup, etc.
 
-I was able to solve all the three objectives and partially solved the bonus question. However, students who solved two questions were also shortlisted for further rounds. 7 students were selected for interview round. Link for server – client programs that I wrote as part of my project: https://bit.ly/2MFXBdz
+I was able to solve all the three objectives and partially solved the bonus question. However, students who solved two questions were also shortlisted for further rounds. 7 students were selected for interview round. Link for server – client programs that I wrote as part of my project: [Project Link](https://bit.ly/2MFXBdz)
 
 
 <br><br>
@@ -65,7 +66,7 @@ It was a technical interview and lasted for around 45 minutes. This was my first
 <br><br>
 
 ### Amongst the other questions asked to me, a few that I remember are as follows:
-
+<br>
 1. How is your experience in working with Linux systems?
 2. What happens when you type ‘google.com’ in a web browser. Had to explain DNS look up, IP routing, NAT table.
 3. Explain whole DNS message exchange process to convert URL to IP address.
@@ -76,8 +77,10 @@ It was a technical interview and lasted for around 45 minutes. This was my first
 8. What happens when a process encounters a function in its text?
 9. Explain the 4 components of a process. (Stack, Heap, text, data)
 10. Explain Loading and Linking
-After the 1st round, I was told that I was selected for the 2nd round. They told me to prepare well as this is going to be a nightmare for me. But surprisingly, the 2nd round was not conducted for me (unlike my other peers who also had to go through a 2nd technical round). Also, there was no HR round.
 
+<br>
+After the 1st round, I was told that I was selected for the 2nd round. They told me to prepare well as this is going to be a nightmare for me. But surprisingly, the 2nd round was not conducted for me (unlike my other peers who also had to go through a 2nd technical round). Also, there was no HR round.
+<br>
 The whole process went very smoothly and the Directi people were really helpful and encouraging.
 
 Finally 3 students were offered the job.

@@ -80,9 +80,18 @@
               <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
        					<div class="main-right-area">
 
-                      <div class="post-container">
+                      <style>
+    body {
+      text-align: justify;
+    }
+    ul, ol, li {
+      margin-left:20px;
+    }
+</style>
+
+<div class="post-container">
   <div class="post" style="margin-top: -150px;">
-    <h1 class="post-title">What's Jekyll?</h1>
+    <h1 class="post-title" style="text-align:left">What's Jekyll?</h1>
     <span class="post-date">01 Apr 2020</span>
     <p><a href="https://jekyllrb.com">Jekyll</a> is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From <a href="https://github.com/mojombo/jekyll/blob/master/README.markdown">the project’s readme</a>:</p>
 
@@ -166,7 +175,15 @@ TheCodeBoxed &copy;2020
       contrast: 90,
       sepia: 10
   });
-
+  // // Enable when system color scheme is dark
+  // DarkReader.auto({
+  //     brightness: 100,
+  //     contrast: 90,
+  //     sepia: 10
+  // });
+  // //
+  // // // Stop watching for system color scheme
+  // DarkReader.auto(false);
 
 
 

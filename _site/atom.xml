@@ -4,7 +4,7 @@
  <title>Rahul Mahanot</title>
  <link href="http://localhost:4000/blog//atom.xml" rel="self"/>
  <link href="http://localhost:4000/blog//"/>
- <updated>2020-05-09T21:20:46+05:30</updated>
+ <updated>2020-05-10T18:43:40+05:30</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Rahul Mahanot</name>
@@ -20,10 +20,10 @@
    <content type="html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;medianet-directi-interview-experience-for-sre-role--on-campus&quot;&gt;Media.net (Directi) Interview Experience for SRE Role | (On Campus)&lt;/h3&gt;
 
-&lt;p&gt;Media.net came to our campus for Site Reliability Engineer role. The selection process had MCQ round followed by socket programming round, and technical interview round&lt;/p&gt;
+&lt;p&gt;Media.net came to our campus for Site Reliability Engineering role. The selection process had MCQ round followed by socket programming round and technical interview round&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h4 id=&quot;key-to-succeed&quot;&gt;Key to succeed:&lt;/h4&gt;
+&lt;h3 id=&quot;key-to-succeed&quot;&gt;Key to succeed:&lt;/h3&gt;
 &lt;p&gt;In-Depth knowledge of Computer Networks and Operating System is required. Also, socket programming is must while knowledge of basic Linux commands is a plus.&lt;/p&gt;
 
 &lt;p&gt;There were two rounds before the Face to Face Technical Interview. First one was an online 45 minutes MCQ test consisting of 40 questions.&lt;/p&gt;
@@ -62,7 +62,7 @@ Always store messages for not greater than 15 minutes. New client should receive
 
 &lt;p&gt;We were being evaluated by the Directi people during the test based on our approach and implementation. They also asked questions on how to scale this chat box to take it to production level such as database usage, persistent storage use for backup, etc.&lt;/p&gt;
 
-&lt;p&gt;I was able to solve all the three objectives and partially solved the bonus question. However, students who solved two questions were also shortlisted for further rounds. 7 students were selected for interview round. Link for server – client programs that I wrote as part of my project: https://bit.ly/2MFXBdz&lt;/p&gt;
+&lt;p&gt;I was able to solve all the three objectives and partially solved the bonus question. However, students who solved two questions were also shortlisted for further rounds. 7 students were selected for interview round. Link for server – client programs that I wrote as part of my project: &lt;a href=&quot;https://bit.ly/2MFXBdz&quot;&gt;Project Link&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;f2f-interview&quot;&gt;F2F interview:&lt;/h3&gt;
@@ -71,7 +71,7 @@ Always store messages for not greater than 15 minutes. New client should receive
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;amongst-the-other-questions-asked-to-me-a-few-that-i-remember-are-as-follows&quot;&gt;Amongst the other questions asked to me, a few that I remember are as follows:&lt;/h3&gt;
-
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;How is your experience in working with Linux systems?&lt;/li&gt;
   &lt;li&gt;What happens when you type ‘google.com’ in a web browser. Had to explain DNS look up, IP routing, NAT table.&lt;/li&gt;
@@ -82,11 +82,13 @@ Always store messages for not greater than 15 minutes. New client should receive
   &lt;li&gt;What is system call?&lt;/li&gt;
   &lt;li&gt;What happens when a process encounters a function in its text?&lt;/li&gt;
   &lt;li&gt;Explain the 4 components of a process. (Stack, Heap, text, data)&lt;/li&gt;
-  &lt;li&gt;Explain Loading and Linking
-After the 1st round, I was told that I was selected for the 2nd round. They told me to prepare well as this is going to be a nightmare for me. But surprisingly, the 2nd round was not conducted for me (unlike my other peers who also had to go through a 2nd technical round). Also, there was no HR round.&lt;/li&gt;
+  &lt;li&gt;Explain Loading and Linking&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;The whole process went very smoothly and the Directi people were really helpful and encouraging.&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;
+After the 1st round, I was told that I was selected for the 2nd round. They told me to prepare well as this is going to be a nightmare for me. But surprisingly, the 2nd round was not conducted for me (unlike my other peers who also had to go through a 2nd technical round). Also, there was no HR round.
+&lt;br /&gt;
+The whole process went very smoothly and the Directi people were really helpful and encouraging.&lt;/p&gt;
 
 &lt;p&gt;Finally 3 students were offered the job.&lt;/p&gt;
 
