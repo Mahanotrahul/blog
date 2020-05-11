@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Color
+date: 09/05/2020
 description: I once lived a happy life...
 ---
 
