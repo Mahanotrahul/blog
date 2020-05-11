@@ -8,12 +8,25 @@ layout: default
     .main-right-area li {
       margin-left:20px;
     }
+    h3 {
+      color: rgb(255, 220, 131);
+    }
 </style>
 
 <div class="post-container">
   <div class="post" style="margin-top: -150px;">
     <h1 class="post-title" style="text-align:left">{{ page.title }}</h1>
-    <span class="post-date">{{ page.date | date_to_string }}</span>
+    <span class="post-date"><img src="{{ 'public/img/Picture.png' | absolute_url }}" style="width: 35px; height:35px; margin-right: 5px;">
+      {{ page.date | date: "%B" }}
+      {% assign day = page.date | date: "%-d"  %}
+      {% case day %}
+        {% when '1' or '21' or '31' %}{{ day}}st,
+        {% when '2' or '22' %}{{ day}}nd,
+        {% when '3' or '23' %}{{ day}}rd,
+        {% else %}{{ day}}th,
+      {% endcase %}
+      {{ page.date | date: "%Y" }}
+    </span>
     {{ content }}
   </div>
 
