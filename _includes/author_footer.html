@@ -1,3 +1,12 @@
+
+<style>
+    @media only screen and (max-width: 767px) {
+      .author_footer_img {
+        display: none;
+      }
+    }
+</style>
+
 <div class="container" style=" background: radial-gradient(circle at 20% 20%,#5183f5 25%,#4640ff 100%);
     box-shadow: 0.5rem 1.25rem 1.75rem 0 rgba(100,110,140,.4);
     color: hsla(0,0%,100%,.9);
@@ -8,7 +17,7 @@
     justify-content: space-between;
     box-shadow: 0 0 black;">
   <div class="author">
-    <img src="{{ 'public/img/Picture.png' | absolute_url }}" style="float:left; width:110px; margin-right: 20px;">
+    <img src="{{ 'public/img/Picture.png' | absolute_url }}" class="author_footer_img" style="float:left; width:110px; margin-right: 20px;">
   </div>
   <div>
     <h3>Author</h3>
@@ -20,4 +29,3 @@
     <script type='text/javascript'>kofiwidget2.init('Buy me Coffee', '#e02424', 'R6R81NPB1');kofiwidget2.draw();</script>
   </div>
 </div>
-<br><br><br><br><br>
