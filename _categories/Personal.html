@@ -48,11 +48,6 @@ title: Personal
               <p>
                 {{ post.description }}
               </p>
-              {% if post.category1 %}
-                <div class="category-container">
-                  <a class="category-filter" href="{{site.baseurl }}categories/{{ post.category1}}">{{ post.category1 }}</a>
-                </div>
-              {% endif %}
             </li>
           </a>
           {% endif %}
@@ -75,11 +70,6 @@ title: Personal
                 <p>
                   {{ post.description }}
                 </p>
-                {% if post.category1 %}
-                  <div class="category-container">
-                    <a class="category-filter" href="{{site.baseurl }}categories/{{ post.category1}}">{{ post.category1 }}</a>
-                  </div>
-                {% endif %}
               </li>
             </a>
             {% endif %}
