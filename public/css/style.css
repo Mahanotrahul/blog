@@ -1288,19 +1288,22 @@ blockquote {
 }
 .category-filter {
 		background-image: initial;
-		background-color: rgb(37, 39, 39);
-		color: rgb(93, 167, 245);
+		background-color: rgb(64, 12, 78);
+		color: rgb(4, 14, 255);
 		display: flex;
 		align-items: center;
 		font-size: 8px;
 		padding: .05rem .5rem;
-		background: #ebf1fe;
+		background: #50497e;
 		border-radius: 6px;
 		margin-right: .5rem;
 		margin-bottom: .5rem;
 		font-weight: 500;
 		color: #5183f5;
 		cursor: pointer;
+	}
+	.active_container {
+		background: rgb(161, 184, 119);
 	}
 
 /* ===========================
