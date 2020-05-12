@@ -29,10 +29,7 @@ title: Code
 
 <div class='container' style="margin-top: -160px; text-align: left;">
     <div id="home">
-      <div class="category-container" style="">
-        <a class="category-filter" href="{{ '/categories/Code/' | absolute_url }}">Code</a>
-        <a class="category-filter" href="{{ '/categories/Tales/' | absolute_url }}">Tales</a>
-      </div>
+      {% include category-container.html %}
       <ul style="list-style-type: none;">
         {% for post in site.posts %}
           {% if post.category1 == 'Code' %}
