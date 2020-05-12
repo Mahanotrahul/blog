@@ -19,7 +19,9 @@ author:
 collections:
   tales:
     output: true
-    
+  categories:
+    output: true
+
 # Gems
 gems: [jekyll-paginate]
 paginate: 5

@@ -2,6 +2,7 @@
 layout: post
 title: My Interview Experience
 description: My interview experience during on campus placements for Directi
+category1: Code
 ---
 
 
