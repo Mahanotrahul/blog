@@ -13,6 +13,7 @@ title: Blog
       <!-- <ul style="list-style-type: none;"> -->
         {% for post in posts %}
           <a class="post-list-link" href="{{ post.url | absolute_url }}">
+            <div class="outer-post-list">
             <div class="post-list">
               <span style="color: rgba(20, 119, 201, 0.85); font-size: 13px; ">
                 {{ post.title }} <span style="color: rgb(46, 250, 97); font-size:10px"> {{ post.date | date: "%B %-d, %Y" }} </span>
@@ -26,6 +27,7 @@ title: Blog
                   <a class="category-filter" href="{{site.baseurl }}categories/{{ post.category1}}">{{ post.category1 }}</a>
                 </div>
               {% endif %}
+            </div>
             </div>
           </a>
         {% endfor %}

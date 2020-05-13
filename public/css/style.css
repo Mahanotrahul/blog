@@ -1318,7 +1318,7 @@ blockquote {
 		/* border-radius: 6px; */
 	}
 	.post-list {
-		margin-bottom: 10px;
+
 		border-top-color: transparent;
 		border-right-color: transparent;
 		border-left-color: transparent;
@@ -1326,8 +1326,7 @@ blockquote {
 		padding-left: 10px;
 		margin-left: 0px;
 		/* border: 1px solid transparent; */
-		border-bottom: 1px solid rgb(254, 254, 254);
-		border-bottom-color: rgb(254, 254, 254);
+
 		box-sizing: border-box;
 		border-radius: 6px;
 	}
@@ -1353,7 +1352,21 @@ blockquote {
     border-color: #303030; */
     background: transparent;
 	}
+	.outer-post-list {
+		/* margin-top: 20px; */
+		padding-bottom: -20px;
+		border-bottom: 1px solid rgb(254, 254, 254);
+		border-bottom-color: rgb(254, 254, 254);
+		margin-bottom: 10px;
+	}
 
+	.outer-post-list:hover {
+		/* margin-top: 20px; */
+		padding-bottom: -20px;
+		border-bottom: 1px solid rgb(254, 254, 254);
+		border-bottom-color: transparent;
+		margin-bottom: 10px;
+	}
 /* ===========================
   Responsive
 ==============================*/
