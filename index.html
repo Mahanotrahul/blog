@@ -10,20 +10,14 @@ title: Blog
 <div class='container' style="margin-top: -160px; text-align: left;">
     <div id="home">
       {% include category_container.html %}
-      <ul style="list-style-type: none;">
+      <!-- <ul style="list-style-type: none;"> -->
         {% for post in posts %}
-          <a href="{{ post.url | absolute_url }}">
-            <li style="margin-bottom: 20px; border-top-color: transparent; border-right-color: transparent; border-left-color: transparent; border-bottom-color: rgb(43, 247, 230);
-    padding: 1rem 0;
-    margin-left: 0px;
-    border-bottom: 1px solid rgb(43, 247, 230);">
-              <span style="color: rgb(46, 250, 97);">
-                {{ post.date | date: "%B %-d, %Y" }}
+          <a class="post-list-link" href="{{ post.url | absolute_url }}">
+            <div class="post-list">
+              <span style="color: rgba(20, 119, 201, 0.85); font-size: 13px; ">
+                {{ post.title }} <span style="color: rgb(46, 250, 97); font-size:10px"> {{ post.date | date: "%B %-d, %Y" }} </span>
               </span>
               <br>
-                <span style="color: rgba(20, 119, 201, 0.85); font-size: 13px;">
-                  {{ post.title }}
-                </span>
               <p>
                 {{ post.description }}
               </p>
@@ -32,12 +26,12 @@ title: Blog
                   <a class="category-filter" href="{{site.baseurl }}categories/{{ post.category1}}">{{ post.category1 }}</a>
                 </div>
               {% endif %}
-            </li>
+            </div>
           </a>
         {% endfor %}
 
 
-      </ul>
+      <!-- </ul> -->
     </div>
 </div>
 

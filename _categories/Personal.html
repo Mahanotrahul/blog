@@ -16,13 +16,10 @@ title: Personal
         <h3> No results found! </h3>
       </div>
       {% else %}
-          <ul style="list-style-type: none;">
+          <!-- <ul style="list-style-type: none;"> -->
             {% for post in posts %}
-              <a href="{{ post.url | absolute_url }}">
-                <li style="margin-bottom: 20px; border-top-color: transparent; border-right-color: transparent; border-left-color: transparent; border-bottom-color: rgb(43, 247, 230);
-        padding: 1rem 0;
-        margin-left: 0px;
-        border-bottom: 1px solid rgb(43, 247, 230);">
+              <a class="post-list-link" href="{{ post.url | absolute_url }}">
+                <div class="post-list">
                   <span style="color: rgb(46, 250, 97);">
                     {{ post.date | date: "%B %-d, %Y" }}
                   </span>
@@ -33,7 +30,7 @@ title: Personal
                   <p>
                     {{ post.description }}
                   </p>
-                </li>
+                </div>
               </a>
             {% endfor %}
         {% endif %}
@@ -41,7 +38,7 @@ title: Personal
 
 
 
-      </ul>
+      <!-- </ul> -->
     </div>
 </div>
 
