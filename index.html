@@ -7,10 +7,31 @@ title: Blog
 {% assign tale = site.tales | sort: 'date' | reverse %}
 {% assign posts = post | concat: tale | sort: 'date' | reverse  %}
 
+<!-- Html Elements for Search -->
+<!-- <div id="search-container">
+<input type="text" id="search-input" placeholder="search...">
+<ul id="results-container"></ul>
+</div> -->
+
+<!-- Script pointing to search-script.js -->
+<script src="{{ '/public/js/search-script.js' | absolute_url }}" type="text/javascript"></script>
+<!-- <script src="https://unpkg.com/simple-jekyll-search/dest/simple-jekyll-search.js"></script> -->
+<!-- Search credits: https://github.com/christian-fei/Simple-Jekyll-Search#json-stringjson-required -->
+
+<!-- Configuration -->
+
+
 <div class='container' style="margin-top: -160px; text-align: left;">
     <div id="home">
       {% include category_container.html %}
       <!-- <ul style="list-style-type: none;"> -->
+      <div id="search-container">
+      <input type="text" class="search" id="search-input" placeholder="Type here to filter posts...">
+      <!-- <div class="post_size">{{ posts.size }}</div> -->
+      <ul id="results-container"></ul>
+      </div>
+      <div id="post-home">
+
         {% for post in posts %}
           <a class="post-list-link" href="{{ post.url | absolute_url }}">
             <div class="outer-post-list">
@@ -31,6 +52,7 @@ title: Blog
             </div>
           </a>
         {% endfor %}
+        </div>
 
 
       <!-- </ul> -->
@@ -115,3 +137,47 @@ title: Blog
       </div>
     </div>
 </div> -->
+<script>
+var sjs = SimpleJekyllSearch({
+  searchInput: document.getElementById('search-input'),
+  resultsContainer: document.getElementById('post-home'),
+  json: '{{ 'search.json' | absolute_url }}',
+  searchResultTemplate: '<a class="post-list-link" href="{url}"><div class="outer-post-list"><div class="post-list"><span style="color: rgba(20, 119, 201, 0.85); font-size: 13px; ">{title} <span style="color: rgb(46, 250, 97); font-size:10px"> {date} </span></span><br><p>{description}</p><div class="category-container"><a class="category-filter" href="{{site.baseurl }}categories/{category}">{category}</a></div></div></div></a>',
+  fuzzy: true
+  // templateMiddleware: alert('hello')
+  // children: true
+});
+// Helper function to listen on DOM changes
+  var observeDOM = (function(){
+    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+    return function( obj, callback ){
+      if( !obj || !obj.nodeType === 1 ) return; // validation
+
+      if( MutationObserver ){
+        // define a new observer
+        var obs = new MutationObserver(function(mutations, observer){
+            callback(mutations);
+        })
+        // have the observer observe foo for changes in children
+        obs.observe( obj, { childList:true, subtree:true });
+      }
+      else if( window.addEventListener ){
+        obj.addEventListener('DOMNodeInserted', callback, false);
+        obj.addEventListener('DOMNodeRemoved', callback, false);
+      }
+    }
+  })();
+
+  var results_container = document.getElementById("post-home");
+
+  // Define observer on results container
+  observeDOM(results_container, function(m) {
+    // Check if container is empty
+    if (results_container.innerHTML.length <= 0) {
+      sjs.search(" ");
+    }
+  });
+
+  // show all results on load by performing a search for a space
+  sjs.search("");
+</script>

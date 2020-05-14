@@ -1,0 +1,18 @@
+---
+---
+{% assign post = site.posts | sort: 'date' | reverse %}
+{% assign tale = site.tales | sort: 'date' | reverse %}
+{% assign posts = post | concat: tale | sort: 'date' | reverse  %}
+[
+  {% for post in posts %}
+    {
+
+      "title"    : "{{ post.title | strip_html | escape }}",
+      "url"      : "{{ site.baseurl }}{{ post.url }}",
+      "category" : "{{post.category1 | join: ', '}}",
+      "description" : "{{ post.description }}",
+      "date"     : "{{ post.date | date: "%B %-d, %Y" }}"
+
+    } {% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
