@@ -26,8 +26,7 @@ title: Blog
       {% include category_container.html %}
       <!-- <ul style="list-style-type: none;"> -->
       <div id="search-container">
-      <input type="text" class="search" id="search-input" placeholder="Type here to filter posts...">
-      <!-- <div class="post_size">{{ posts.size }}</div> -->
+      <input type="text" class="search" id="search-input" placeholder="Type here to filter posts..."><div id="post-count" style="float:right;display:flex">{{ posts.size }}</div>
       <ul id="results-container"></ul>
       </div>
       <div id="post-home">
@@ -144,6 +143,18 @@ var sjs = SimpleJekyllSearch({
   json: '{{ 'search.json' | absolute_url }}',
   searchResultTemplate: '<a class="post-list-link" href="{url}"><div class="outer-post-list"><div class="post-list"><span style="color: rgba(20, 119, 201, 0.85); font-size: 13px; ">{title} <span style="color: rgb(46, 250, 97); font-size:10px"> {date} </span></span><br><p>{description}</p><div class="category-container"><a class="category-filter" href="{{site.baseurl }}categories/{category}">{category}</a></div></div></div></a>',
   fuzzy: true
+  // templateMiddleware: function () {
+  // //           // console.log('Search is working fine, I want this method to be called when there are any results');
+  // //           // console.log(document.getElementById('search-results'));
+  //           var div = document.getElementById("post-count");
+  //           div.innerHTML = document.getElementsByClassName("post-list").length + 1;
+  //       },
+  // success: function () {
+  //   console.log('Search is working fine, I want this method to be called when there are any results');
+    // var post_count = document.createTextNode(document.getElementsByClassName("post-list").length);
+    // var div = document.getElementById("post-count");
+    // div.innerHTML = document.getElementsByClassName("post-list").length;
+  // }
   // templateMiddleware: alert('hello')
   // children: true
 });
@@ -176,8 +187,17 @@ var sjs = SimpleJekyllSearch({
     if (results_container.innerHTML.length <= 0) {
       sjs.search(" ");
     }
+    // if (results_container.innerHTML == 'No results found') {
+    //   var div = document.getElementById("post-count");
+    //   div.innerHTML = 0;
+    // }
+    var div = document.getElementById("post-count");
+    div.innerHTML = document.getElementsByClassName("post-list").length;
   });
 
   // show all results on load by performing a search for a space
   sjs.search("");
+
+
+
 </script>

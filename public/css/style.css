@@ -1391,11 +1391,33 @@ blockquote {
 		height: 2.1rem;
     /* max-width: 100%; */
     line-height: 1;
+		margin-right: -10px;
 	}
 
 	.search:focus {
 		border: 2px solid #444;
 		background: #333!important;
+	}
+
+	#search-container {
+		display: flex;
+    align-items: center;
+    max-width: 500px;
+    margin-bottom: 2rem;
+	}
+
+	#post-count {
+		color: rgb(93, 167, 245);
+		/* width: 80px; */
+    text-align: right;
+    /* color: #5183f5; */
+    font-size: 1.4rem;
+    font-weight: 500;
+		margin-left: 40px;
+		margin-right: -10px;
+		display: block;
+		margin-top: -5px;
+		text-align: center;
 	}
 /* ===========================
   Responsive
