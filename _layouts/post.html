@@ -27,10 +27,9 @@ layout: default
       {% endcase %}
       {{ page.date | date: "%Y" }} -->
       {% include date-format.html date=page.date %}
+      <p class="social-share"><a href="http://twitter.com/intent/tweet?url={{site.url}}{{site.baseurl}}{{ page.url }}&text={{ page.title | url_escape }}&via={{ site.username }}" target="_blank" rel="noopener noreferrer" title="Share on twitter">share</a></p>
     </span>
-    <span class="post-share">
-      <a href="http://twitter.com/intent?url={{site.url}}{{site.baseurl}}{{ page.url }}&text={{ page.title | url_escape }}&via={{ site.username }}" target="_blank" rel="noopener noreferrer">share</a>
-    </span>
+
     {{ content }}
   </div>
 
