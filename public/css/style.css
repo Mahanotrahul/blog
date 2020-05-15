@@ -486,7 +486,7 @@ blockquote {
 
 /* Meta data line below post title */
 .post-date {
-  display: block;
+  display: inline-block;
 	font-size: 10px;
   margin-bottom: 1rem;
   color: #9a9a9a;
@@ -1302,6 +1302,10 @@ blockquote {
 	padding: 0 0 1.8rem 0;
 }
 
+.social-share {
+	display: inline-block;
+	font-size: 10px;
+}
 .post-share {
 	display: inline-block;
 	font-size: 10px;

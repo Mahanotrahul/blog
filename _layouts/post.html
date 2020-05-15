@@ -26,9 +26,9 @@ layout: default
         {% else %}{{ day}}th,
       {% endcase %}
       {{ page.date | date: "%Y" }} -->
-      {% include date-format.html date=page.date %}
-      <p class="social-share"><a href="http://twitter.com/intent/tweet?url={{site.url}}{{site.baseurl}}{{ page.url }}&text={{ page.title | url_escape }}&via={{ site.username }}" target="_blank" rel="noopener noreferrer" title="Share on twitter">share</a></p>
+      {% include date-format.html date=page.date %} &nbsp; / &nbsp;
     </span>
+    <span class="social-share"><a href="http://twitter.com/intent/tweet?url={{site.url}}{{site.baseurl}}{{ page.url }}&text={{ page.title | url_escape }}&via={{ site.username }}" target="_blank" rel="noopener noreferrer" title="Share on twitter">share</a></span>
 
     {{ content }}
   </div>
