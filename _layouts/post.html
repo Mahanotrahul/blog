@@ -29,7 +29,7 @@ layout: default
       {% include date-format.html date=page.date %}
     </span>
     <span class="post-share">
-      <a href="http://twitter.com/share?text={{ page.title | url_escape }}&amp;url={{site.url}}{{site.baseurl}}{{ page.url }}&amp;via={{ site.username }}" target="_blank" rel="noopener noreferrer">share</a>
+      <a href="http://twitter.com/intent?url={{site.url}}{{site.baseurl}}{{ page.url }}&text={{ page.title | url_escape }}&via={{ site.username }}" target="_blank" rel="noopener noreferrer">share</a>
     </span>
     {{ content }}
   </div>
