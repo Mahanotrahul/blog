@@ -1,6 +1,8 @@
 ---
 layout: post
-title: Example content
+title: Template Blog Post
+description: Example template for a blog post
+category1: Code
 ---
 
 

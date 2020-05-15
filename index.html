@@ -22,7 +22,9 @@ title: Blog
 
 
 <div class='container' style="margin-top: -160px; text-align: left;">
+
     <div id="home">
+      <span class="blog-head">Articles</span>
       {% include category_container.html %}
       <!-- <ul style="list-style-type: none;"> -->
       <div id="search-container">
@@ -35,16 +37,16 @@ title: Blog
           <a class="post-list-link" href="{{ post.url | absolute_url }}">
             <div class="outer-post-list">
             <div class="post-list">
-              <span style="color: rgba(20, 119, 201, 0.85); font-size: 13px; ">
-                {{ post.title }} <span style="color: rgb(46, 250, 97); font-size:10px"> {{ post.date | date: "%B %-d, %Y" }} </span>
-              </span>
+              <span class="post-list-title"> {{ post.title }} </span>
+              <!-- <br> -->
+                <span class="post-list-date"> {% include date-format.html date=post.date %} </span>
               <br>
               <p>
                 {{ post.description }}
               </p>
               {% if post.category1 %}
                 <div class="category-container">
-                  <a class="category-filter" href="{{site.baseurl }}categories/{{ post.category1}}">{{ post.category1 }}</a>
+                  <a class="category-filter" href="{{ site.baseurl }}categories/{{ post.category1}}">{{ post.category1 }}</a>
                 </div>
               {% endif %}
             </div>
