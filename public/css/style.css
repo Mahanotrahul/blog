@@ -13,6 +13,7 @@ body {
 	height: 100%;
 	font-family: 'Arial', 'sans-serif';
 	background-image: initial;
+	background-color: #1f2121;
 }
 
 h1,
@@ -765,7 +766,8 @@ blockquote {
 	Footer section
 -----------------------*/
 .footer-section {
-	background: #40424a;
+	/* background: #40424a; */
+	background: rgba(10, 29, 10, 0.17);
 	padding: 20px 0;
 }
 
@@ -1465,6 +1467,21 @@ blockquote {
 		display: block;
 		margin-top: -5px;
 		text-align: center;
+	}
+
+	.footer-left {
+		display: inline-block;
+	}
+
+	.footer-right {
+		display: inline-block;
+		text-align: right;
+		float: right;
+	}
+
+	.footer-link {
+		font-size: 10px;
+		padding-right: 10px;
 	}
 /* ===========================
   Responsive
