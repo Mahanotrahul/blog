@@ -15,7 +15,11 @@ layout: null
    <email>{{ site.author.email }}</email>
  </author>
 
- {% for post in site.posts %}
+ {% assign post = site.posts | sort: 'date' | reverse %}
+ {% assign tale = site.tales | sort: 'date' | reverse %}
+ {% assign posts = post | concat: tale | sort: 'date' | reverse  %}
+
+ {% for post in posts %}
  <entry>
    <title>{{ post.title }}</title>
    <link href="{{ site.url }}{{ post.url }}"/>
