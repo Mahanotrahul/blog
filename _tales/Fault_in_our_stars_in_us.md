@@ -7,7 +7,7 @@ category1: Tales
 ---
 
 <div class="post_image_container">
-![Fault In Our Stars, in Us!]({{ 'public/img/Fault_in_our_stars_in_us.png' | absolute_url }}){:class="post_image"}
+![Fault In Our Stars, in Us!]({{ 'public/img/Fault_in_our_stars_in_us.jpg' | absolute_url }}){:class="post_image"}
 </div>
 <br> <br>
 It’s a beautiful shining night in the campus today. It’s not a usual night. The stars are shining bright and the moon is in its waning gibbous phase. It is shining bright reddish yellow just above my head. I am standing at the balcony of my room looking at the stars and trying to figure out the constellations. I realize that I have never seen a shooting star. I have always wished to see one.\\
