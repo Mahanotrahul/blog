@@ -26,7 +26,6 @@ collections:
 # Gems
 paginate: 5
 paginate_path: "page:num"
-url: "https://mahanotrahul.github.io/blog/"
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
