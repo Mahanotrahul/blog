@@ -40,7 +40,7 @@ h3 {
 p {
 	font-size: 12px;
 	color: #B3B9C5;
-	line-height: 1.4;
+	line-height: 1.7;
 }
 
 
@@ -782,7 +782,6 @@ blockquote {
 	Home 2 Style
 -----------------------*/
 .home-two-style {
-	background-image: url(../img/home-2-bg.png);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: top center;
@@ -1483,15 +1482,20 @@ blockquote {
 		font-size: 10px;
 		padding-right: 10px;
 	}
+
+	.post_image_container {
+		text-align: center
+	}
+	.post_image {
+		max-width: 90%;
+		max-height: 400px;
+	}
 /* ===========================
   Responsive
 ==============================*/
 @media only screen and (max-width: 1730px) {
 	.home-two-style .social-section .social-link-warp:after {
 		display: none;
-	}
-	img {
-		max-width: 25%;
 	}
 	.post-container {
 		padding-left: 300px;
@@ -1502,9 +1506,6 @@ blockquote {
 @media only screen and (max-width: 1600px) {
 	.hero-text h2 {
 		font-size: 120px;
-	}
-	img {
-		max-width: 28%;
 	}
 	.post-container {
 		padding-left: 250px;
@@ -1520,9 +1521,6 @@ blockquote {
 	.home-six-style .header-section {
 		position: relative;
 		background: #009fff;
-	}
-	img {
-		max-width: 32%;
 	}
 	.post-container {
 		padding-left: 200px;
@@ -1557,9 +1555,6 @@ blockquote {
 	}
 	.home-four-style .main-right-area {
 		padding-right: -110px;
-	}
-	img {
-		max-width: 32%;
 	}
 	.post-container {
 		padding-left: 150px;
@@ -1597,9 +1592,6 @@ blockquote {
 	}
 	.home-four-style .main-right-area {
 		padding-right: 110px;
-	}
-	img {
-		max-width: 35%;
 	}
 	.post-container {
 		padding-left: 150px;
@@ -1659,9 +1651,6 @@ blockquote {
 	}
 	.header-buttons {
 		display: hidden;
-	}
-	img {
-		max-width: 35%;
 	}
 	.post-container {
 		padding-left: 100px;
@@ -1738,9 +1727,6 @@ blockquote {
 	.info-section .hero-info ul li span {
 		color: #9c9b9b;
 	}
-	img {
-		max-width: 38%;
-	}
 	.post-container {
 		padding-left: 10px;
 		padding-right: 10px;
@@ -1778,9 +1764,6 @@ blockquote {
 	}
 	.home-four-style .main-left-area {
 		padding-top: 250px;
-	}
-	img {
-		max-width: 38%;
 	}
 	.post-container {
 		padding-left: 0px;
