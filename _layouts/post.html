@@ -59,8 +59,8 @@ layout: default
 <script type="text/javascript">
     var HYVOR_TALK_WEBSITE = 923; // DO NOT CHANGE THIS
     var HYVOR_TALK_CONFIG = {
-        url: false,
-        id: false
+        url: '{{ page.url | absolute_url }}',
+        id: '{{page.id}}'
     };
 </script>
 <script async type="text/javascript" src="//talk.hyvor.com/web-api/embed"></script>
