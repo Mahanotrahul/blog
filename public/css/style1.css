@@ -51,7 +51,7 @@ header {
   *zoom: 1;
   padding-bottom: 10px;
   line-height: 1.3em;
-  background: #292929;
+  /* background: #292929; */
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
