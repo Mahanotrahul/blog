@@ -11,6 +11,12 @@ layout: default
     h3 {
       color: rgb(255, 220, 131);
     }
+    .wrap {
+            margin:auto;
+            width:800px;
+            max-width:100%;
+        }
+
 </style>
 
 <div class="post-container">
@@ -55,7 +61,8 @@ layout: default
   {% endif %} -->
 </div>
 <br><br>
-<div id="hyvor-talk-view"></div>
+<div class="wrap">
+<div id="hyvor-talk-view" style=""></div>
 <script type="text/javascript">
     var HYVOR_TALK_WEBSITE = 923; // DO NOT CHANGE THIS
     var HYVOR_TALK_CONFIG = {
@@ -64,6 +71,6 @@ layout: default
     };
 </script>
 <script async type="text/javascript" src="//talk.hyvor.com/web-api/embed"></script>
-
+</div>
 
 {% include author_footer.html %}
