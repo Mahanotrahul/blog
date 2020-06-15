@@ -36,7 +36,7 @@
   100% {
     opacity: 1; } }
 body {
-  background: #171717;
+  /* background: #171717; */
   color: #fff;
   font-family: 'Open Sans', Georgia, helvetica, arial, sans-serif;
   font-size: 16px;
