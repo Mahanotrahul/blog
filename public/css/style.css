@@ -1025,7 +1025,7 @@ blockquote {
 	height: 800px;
 	top: 0;
 	left: 0;
-	background-image: url("../img/home-4-bg.png");
+	/* background-image: url("../img/home-4-bg.png"); */
 	background-repeat: no-repeat;
 	background-size: cover;
 }
