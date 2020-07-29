@@ -22,7 +22,7 @@ layout: default
 <div class="post-container">
   <div class="post" style="margin-top: -150px;">
     <h1 class="post-title">{{ page.title }}</h1>
-    <span class="post-date"><img src="{{ 'public/img/post_picture.png' | absolute_url }}" style="width: 35px; height:35px; margin-right: 5px;">
+    <span class="post-date"><img src="{{ site.baseurl }}/public/img/post_picture.png" style="width: 35px; height:35px; margin-right: 5px;">
       <!-- {{ page.date | date: "%B" }}
       {% assign day = page.date | date: "%-d"  %}
       {% case day %}
@@ -33,7 +33,7 @@ layout: default
       {% endcase %}
       {{ page.date | date: "%Y" }} -->
       {% include date-format.html date=page.date %} &nbsp; / &nbsp;
-      <span class="social-share"><a href="http://twitter.com/intent/tweet?url={{site.url}}{{site.baseurl}}{{ page.url }}&text={{ page.title | url_escape }}&via={{ site.username }}" target="_blank" rel="noopener noreferrer" title="Share on twitter">share</a></span>
+      <span class="social-share"><a href="https://twitter.com/intent/tweet?url={{site.url}}{{site.baseurl}}{{ page.url }}&text={{ page.title | url_escape }}&via={{ site.username }}" target="_blank" rel="noopener noreferrer" title="Share on twitter">share</a></span>
     </span>
 
 
