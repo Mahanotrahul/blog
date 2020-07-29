@@ -34,7 +34,7 @@ title: Blog
       <div id="post-home">
 
         {% for post in posts %}
-          <a class="post-list-link" href="{{ site.baseurl }}/{{ post.url }}">
+          <a class="post-list-link" href="{{ site.baseurl }}{{ post.url }}">
             <div class="outer-post-list">
             <div class="post-list">
               <span class="post-list-title"> {{ post.title }} </span>
