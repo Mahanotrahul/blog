@@ -64,7 +64,7 @@ title: Blog
 var sjs = SimpleJekyllSearch({
   searchInput: document.getElementById('search-input'),
   resultsContainer: document.getElementById('post-home'),
-  json: '{{ 'search.json' | absolute_url }}',
+  json: '{{ site.baseurl }}search.json',
   searchResultTemplate: '<a class="post-list-link" href="{url}"><div class="outer-post-list"><div class="post-list"><span style="color: rgba(20, 119, 201, 0.85); font-size: 13px; ">{title} <span style="color: rgb(46, 250, 97); font-size:10px"> {date} </span></span><br><p>{description}</p><div class="category-container"><a class="category-filter" href="{{site.baseurl }}categories/{category}">{category}</a></div></div></div></a>',
   fuzzy: true
 });
