@@ -36,13 +36,21 @@
   100% {
     opacity: 1; } }
 body {
-  /* background: #171717; */
   color: #fff;
   font-family: 'Open Sans', Georgia, helvetica, arial, sans-serif;
   font-size: 16px;
   line-height: 1.55em;
   padding: 0;
-  margin: 0; }
+  margin: 0; 
+  box-sizing: border-box;
+}
+body a {
+    -webkit-transition: all, 0.3s;
+    -moz-transition: all, 0.3s;
+    -ms-transition: all, 0.3s;
+    -o-transition: all, 0.3s;
+    transition: all, 0.3s;
+}
 
 [data-more] div.more-body {
   display: none; }
@@ -109,16 +117,9 @@ header {
 
 footer {
   padding: 0px;
-  background: #f0f1f2;
   line-height: 2rem; }
   footer h3 {
     font-size: 14px; }
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: normal; }
-h1, h2, h3, h4, h5, h6 a {
-  text-decoration: none;
-  font-weight: normal; }
 
 .hr {
   text-align: center;
