@@ -24,7 +24,13 @@ title: Blog
 <div class='container' style="margin-top: -160px; text-align: left;">
 
     <div id="home">
-      <span class="blog-head">Articles</span>
+        <div style="display: flex; align-items: center;"><h1 class="blog-head">Chronicles</h1>
+          <a onclick="modeSwitcher()" style="margin-left: auto; order: 2; "><img src="{{ site.baseurl }}/public/img/moon.svg" class="modeSwitcher" id="theme-toggle" ></a>
+        </div>
+        <span class="blog-subhead">Rahul's notes, stories and ramblings</span>
+
+      <div class="blog-content">
+
       {% include category_container.html %}
       <!-- <ul style="list-style-type: none;"> -->
       <div id="search-container">
@@ -41,11 +47,11 @@ title: Blog
               <!-- <br> -->
                 <span class="post-list-date"> {% include date-format.html date=post.date %} </span>
               <br>
-              <p>
+              <p class="post-description">
                 {{ post.description }}
               </p>
               {% if post.category1 %}
-                <div class="category-container">
+                <div class="category-container in-post-category-container">
                   <object><a class="category-filter" href="{{ site.baseurl }}categories/{{ post.category1}}">{{ post.category1 }}</a></object>
                 </div>
               {% endif %}
@@ -57,6 +63,8 @@ title: Blog
 
 
       <!-- </ul> -->
+
+      </div>
     </div>
 </div>
 
@@ -65,7 +73,7 @@ var sjs = SimpleJekyllSearch({
   searchInput: document.getElementById('search-input'),
   resultsContainer: document.getElementById('post-home'),
   json: '{{ site.baseurl }}search.json',
-  searchResultTemplate: '<a class="post-list-link" href="{url}"><div class="outer-post-list"><div class="post-list"><span style="color: rgba(20, 119, 201, 0.85); font-size: 13px; ">{title} <span style="color: rgb(46, 250, 97); font-size:10px"> {date} </span></span><br><p>{description}</p><div class="category-container"><a class="category-filter" href="{{site.baseurl }}categories/{category}">{category}</a></div></div></div></a>',
+  searchResultTemplate: '<a class="post-list-link" href="{url}"><div class="outer-post-list"><div class="post-list"><span class="post-list-title">{title} <span class="post-list-date"> {date} </span></span><br><p  class="post-description">{description}</p><div class="category-container in-post-category-container"><a class="category-filter" href="{{site.baseurl }}categories/{category}">{category}</a></div></div></div></a>',
   fuzzy: true
 });
 // Helper function to listen on DOM changes

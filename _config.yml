@@ -9,6 +9,7 @@ description:         'Rahul Mahanot'
 baseurl:             '/blog/'
 paginate:            5
 permalink:           pretty
+disable_disk_cache:  true
 
 # About/contact
 author:
