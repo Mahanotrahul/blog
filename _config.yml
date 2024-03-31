@@ -6,7 +6,7 @@ username:            mahanotrahul
 profile_img:         Picture.png
 tagline:             ''
 description:         'Rahul Mahanot'
-baseurl:             '/blog/'
+baseurl:             '/blog'
 paginate:            5
 permalink:           pretty
 disable_disk_cache:  true
@@ -33,6 +33,7 @@ plugins:
 
 kramdown:
   parse_block_html: true
+  smart_quotes: ["apos", "apos", "quot", "quot"]
 
 # Custom vars
 version:             1.1.0
