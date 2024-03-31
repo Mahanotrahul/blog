@@ -7,8 +7,6 @@ category1: Tales
 ---
 
 
-<br><br>
-
 <br>
 I once lived a happy life\\
 Black and White\\

@@ -6,8 +6,6 @@ description: Just so when you are alone...
 category1: Tales
 ---
 
-<br><br>
-
 Just so when you are alone,\\
 And memories are long gone.\\
 Nobody is there with you to talk,\\

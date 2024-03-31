@@ -52,7 +52,7 @@ title: Blog
               </p>
               {% if post.category1 %}
                 <div class="category-container in-post-category-container">
-                  <object><a class="category-filter" href="{{ site.baseurl }}categories/{{ post.category1}}">{{ post.category1 }}</a></object>
+                  <object><a class="category-filter" href="{{ site.baseurl }}/categories/{{ post.category1}}">{{ post.category1 }}</a></object>
                 </div>
               {% endif %}
             </div>
@@ -72,7 +72,7 @@ title: Blog
 var sjs = SimpleJekyllSearch({
   searchInput: document.getElementById('search-input'),
   resultsContainer: document.getElementById('post-home'),
-  json: '{{ site.baseurl }}search.json',
+  json: '{{ site.baseurl }}/search.json',
   searchResultTemplate: '<a class="post-list-link" href="{url}"><div class="outer-post-list"><div class="post-list"><span class="post-list-title">{title} <span class="post-list-date"> {date} </span></span><br><p  class="post-description">{description}</p><div class="category-container in-post-category-container"><a class="category-filter" href="{{site.baseurl }}categories/{category}">{category}</a></div></div></div></a>',
   fuzzy: true
 });

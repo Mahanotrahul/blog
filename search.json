@@ -11,7 +11,7 @@
       "url"      : "{{ site.baseurl }}{{ post.url }}",
       "category" : "{{post.category1 | join: ', '}}",
       "description" : "{{ post.description }}",
-      "date"     : "{{ post.date | date: "%B %-d, %Y" }}"
+      "date"     : "{{ post.date | date: '%B %-d, %Y' }}"
 
     } {% unless forloop.last %},{% endunless %}
   {% endfor %}

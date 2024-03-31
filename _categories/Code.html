@@ -8,34 +8,4 @@ title: Code
 {% assign post1 = post | concat: tale | sort: 'date' | reverse  %}
 {% assign posts = post1 | where: "category1", "Code" %}
 
-<div class='container' style="margin-top: -160px; text-align: left;">
-    <div id="home">
-      {% include category_container.html %}
-      {% if posts.size == 0 %}
-      <p>
-        <h3> No results found! </h3>
-      </p>
-      {% else %}
-      <!-- <ul style="list-style-type: none;"> -->
-        {% for post in posts %}
-          <a class="post-list-link" href="{{ site.baseurl }}{{post.url}}">
-            <div class="post-list">
-                <span style="color: rgb(46, 250, 97);">
-                  {{ post.date | date: "%B %-d, %Y" }}
-                </span>
-                <br>
-                  <span style="color: rgba(20, 119, 201, 0.85); font-size: 13px;">
-                    {{ post.title }}
-                  </span>
-                <p>
-                  {{ post.description }}
-                </p>
-              </div>
-            </a>
-          {% endfor %}
-        {% endif %}
-
-
-      <!-- </ul> -->
-    </div>
-</div>
+{% include category_content.html %}

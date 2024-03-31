@@ -24,6 +24,8 @@ layout: default
     <div style="display: flex; align-items: center;"><h1 class="post-title">{{ page.title }}</h1>
       <a onclick="modeSwitcher()" style="margin-left: auto; order: 2;"><img src="{{ site.baseurl }}/public/img/icon/moon.svg" class="modeSwitcher" id="theme-toggle"></a>
     </div>
+
+    <div style="display: flex; align-items: center;">
     <span class="post-date"><img src="{{ site.baseurl }}/public/img/post_picture.png" style="width: 35px; height:35px; margin-right: 5px;">
       <!-- {{ page.date | date: "%B" }}
       {% assign day = page.date | date: "%-d"  %}
@@ -37,6 +39,10 @@ layout: default
       {% include date-format.html date=page.date %} &nbsp; / &nbsp;
       <span class="social-share"><a href="https://twitter.com/intent/tweet?url={{site.url}}{{site.baseurl}}{{ page.url }}&text={{ page.title | url_escape }}&via={{ site.username }}" target="_blank" rel="noopener noreferrer" title="Share on twitter">share</a></span>
     </span>
+    <a class="category-filter" href="{{ site.baseurl }}/categories/{{ page.category1 }}" style="margin-left: auto; order: 2;"><i class="fa fa-tag" style="font-size: 10px; margin-right: 3px"></i>{{ page.category1 }}</a>
+    </div>
+    <br><br>
+
 
 
     {{ content }}

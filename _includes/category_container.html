@@ -2,6 +2,6 @@
 
 <div class="category-container">
   {% for post in site.categories %}
-    <a class="category-filter{% if page.title == post.title %} active_container {% endif %}" href="{{ site.baseurl }}categories/{{ post.title }}">{{ post.title }}</a>
+    <a class="category-filter{% if page.title == post.title %} active_container {% endif %}" href="{{ site.baseurl }}/categories/{{ post.title }}" id="{{ post.title }}"><i class="fa fa-tag" style="font-size: 10px; margin-right: 3px"></i>{{ post.title }}</a>
   {% endfor %}
 </div>
