@@ -2,7 +2,7 @@
 layout: post
 title: Why I chose Jekyll?
 date: 01/04/2024
-description: Jekyll is a static site tool for my blog
+description: Jekyll is a static site tool used to develop for my blog
 category1: Code
 ---
 
