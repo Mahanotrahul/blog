@@ -11,27 +11,8 @@
         </p>
         {% else %}
         <!-- <ul style="list-style-type: none;"> -->
-            {% for post in posts %}
-            <a class="post-list-link" href="{{ site.baseurl }}{{ post.url }}">
-                <div class="outer-post-list">
-                <div class="post-list">
-                <span class="post-list-title"> {{ post.title }} </span>
-                <!-- <br> -->
-                    <span class="post-list-date"> {% include date-format.html date=post.date %} </span>
-                <br>
-                <p class="post-description">
-                    {{ post.description }}
-                </p>
-                {% if post.category1 %}
-                    <div class="category-container in-post-category-container">
-                    <object><a class="category-filter" href="{{ site.baseurl }}/categories/{{ post.category1}}">{{ post.category1 }}</a></object>
-                    </div>
-                {% endif %}
-                </div>
-                </div>
-            </a>
-            {% endfor %}
-            {% endif %}
+            {% include posts_view.html %}
+        {% endif %}
         <!-- </ul> -->
         </div>
     </div>
