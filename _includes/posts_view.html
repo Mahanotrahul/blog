@@ -1,0 +1,47 @@
+{% for post in posts %}
+    {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+        {% if post.previous %}
+        {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
+        {% endif %}
+
+        {% if forloop.first %}
+        <div class="wrap-collabsible">
+        <input id="{{ year }}" class="toggle" type="checkbox" checked>
+        <label for="{{ year }}" class="lbl-toggle">{{ year }}</label>
+        <div class="collapsible-content">
+        {% else %}
+        {% if year == nyear %}
+        {% else %}
+            </div> <!-- collapsible-content -->
+            </div>  <!-- wrap-collapsible -->
+
+            <div class="wrap-collabsible">
+            <input id="{{ year }}" class="toggle" type="checkbox" checked>
+            <label for="{{ year }}" class="lbl-toggle">{{ year }}</label>
+            <div class="collapsible-content">
+        {% endif %}
+        {% endif %}
+
+    <a class="post-list-link" href="{{ site.baseurl }}{{ post.url }}">
+        <div class="outer-post-list">
+        <div class="post-list">
+        <span class="post-list-title"> {{ post.title }} </span>
+        <!-- <br> -->
+            <span class="post-list-date"> {% include date-format.html date=post.date %} </span>
+        <br>
+        <p class="post-description">
+            {{ post.description }}
+        </p>
+        {% if post.category1 %}
+            <div class="category-container in-post-category-container">
+            <object><a class="category-filter" href="{{ site.baseurl }}/categories/{{ post.category1}}">{{ post.category1 }}</a></object>
+            </div>
+        {% endif %}
+        </div>
+        </div>
+    </a>
+    {% if forloop.last %}
+        </div> <!-- collapsible-content -->
+        </div>  <!-- wrap-collapsible -->
+    {% endif %}
+{% endfor %}
